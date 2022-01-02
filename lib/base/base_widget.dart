@@ -26,30 +26,32 @@ class BaseWidget extends StatelessWidget {
   final bool extendBody;
   final String? customDeveloperText;
   final Color? navigationBarColor;
-  BaseWidget(
-      {required this.controller,
+  const BaseWidget(
+      {Key? key,
+      required this.controller,
       this.title,
-      this.useAppbar: true,
+      this.useAppbar = true,
       this.child,
-      this.safeAreaTop: false,
-      this.safeAreaLeft: true,
-      this.safeAreaRight: true,
-      this.safeAreaBottom: false,
-      this.hasRefresh: false,
-      this.hasLoadMore: false,
-      this.requestFocus: true,
-      this.showDeveloperMode: true,
-      this.extendBody: false,
+      this.safeAreaTop = false,
+      this.safeAreaLeft = true,
+      this.safeAreaRight = true,
+      this.safeAreaBottom = false,
+      this.hasRefresh = false,
+      this.hasLoadMore = false,
+      this.requestFocus = true,
+      this.showDeveloperMode = true,
+      this.extendBody = false,
       this.bottomNavigationBar,
       this.body,
       this.appBar,
-      this.customColor: Colors.white,
-      this.isLoading: false,
+      this.customColor = Colors.white,
+      this.isLoading = false,
       this.floatingActionButtonLocation,
-      this.isAppBarLogo: false,
+      this.isAppBarLogo = false,
       this.floatingActionButton,
       this.navigationBarColor,
-      this.customDeveloperText});
+      this.customDeveloperText})
+      : super(key: key);
   @override
   Widget build(BuildContext context) {
     final mediaQueryData = MediaQuery.of(context);

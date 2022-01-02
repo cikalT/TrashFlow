@@ -5,7 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:sizer/sizer.dart';
 import 'package:overlay_support/overlay_support.dart';
 import 'package:trashflow/pages/splash_screen/splash_screen_page.dart';
-import 'pages/misc/UnknownPage.dart';
+import 'pages/misc/unknown_page.dart';
 import 'routes/index.dart';
 import 'themes/app_theme.dart';
 
