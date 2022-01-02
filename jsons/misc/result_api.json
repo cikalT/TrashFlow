@@ -1,0 +1,9 @@
+{
+  "@JsonKey(ignore: true) int": "total",
+  "@JsonKey(ignore: true) dynamic": "data",
+  "@JsonKey(ignore: true) List<dynamic>": "list_data",
+  "@JsonKey(defaultValue: false) bool": "status",
+  "message": "string",
+  "@JsonKey(defaultValue:0) int": "status_code",
+  "errors": "$errors"
+}

@@ -1,0 +1,17 @@
+{
+  "id": "String",
+  "title": "String",
+  "description": "String",
+  "name" : "String",
+  "@JsonKey() dynamic": "data",
+  "@JsonKey(name) Map<String,dynamic>": "dynamic_map",
+  "@JsonKey(name) Map<String,String>": "string_map",
+  "@JsonKey(name) Map<String,int>": "int_map",
+  "@JsonKey(name) Map<String,double>": "double_map",
+  "@JsonKey(name) Map<String,bool>": "bool_map",
+  "is_edit": true,
+  "state": true,
+  "additional_id": "String",
+  "@JsonKey() int": "int_data",
+  "@JsonKey() double": "double_data"
+}

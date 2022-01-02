@@ -1,0 +1,9 @@
+{
+  "@JsonKey(defaultValue: false) bool": "selected",
+  "value": null,
+  "label": "string",
+  "index": 1,
+  "sub_label": "String",
+  "box_color": "String",
+  "data": null
+}
