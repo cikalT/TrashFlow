@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
 import 'dart:io';
 
@@ -152,14 +153,9 @@ class UtilHelper {
     return url;
   }
 
-  static String? handleEndSpaces(String? url) {
-    if (url == null) return null;
-    if (url.substring(url.length - 1, url.length) == ' ') {
-      return url.substring(0, url.length - 1);
+  static void printDebugMode(dynamic printValue) {
+    if (kDebugMode) {
+      print(printValue);
     }
-    if (url.substring(url.length-3, url.length) == '%20') {
-      return url.substring(0, url.length - 3);
-    }
-    return url;
   }
 }
