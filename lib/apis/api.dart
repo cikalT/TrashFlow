@@ -1,10 +1,6 @@
-import 'dart:convert';
-
-import 'package:flutter/foundation.dart';
-import 'package:get/get.dart';
 import 'package:http/http.dart' as HttpResponse;
-import 'package:http/http.dart';
 import 'package:trashflow/base/base_controller.dart';
+import 'package:trashflow/configs/shared_pref_config.dart';
 import 'package:trashflow/helpers/index.dart';
 import 'package:trashflow/models/index.dart';
 export 'dart:convert';
@@ -15,11 +11,20 @@ class Api extends BaseController {
   String msx = '';
   bool showFailMessage = true;
 
+
+  String accessEmail = '';
   var payload;
   var headers = {
     'Content-Type': 'application/json',
     'Accept': 'application/json'
   };
+
+  generateHeader({String? email}) async {
+    var email = await SharedPrefConfig.getEmail();
+    accessEmail = email;
+    headers['email'] = email;
+    printDebugMode(accessEmail);
+  }
 
   printError(dynamic e) {
     if (e != null && e.toString().toLowerCase().contains('api.')) {

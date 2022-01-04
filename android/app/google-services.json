@@ -14,6 +14,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "170451165586-qi822t7gi9s94ctvlkvo84ncajmb9q98.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "id.trashflow.onion.trashflow",
+            "certificate_hash": "437a687bcd302b01c3b75748629efd513149f2b7"
+          }
+        },
+        {
           "client_id": "170451165586-4j4cos6fgdmdc88fnmngko54bpfgbghb.apps.googleusercontent.com",
           "client_type": 3
         }

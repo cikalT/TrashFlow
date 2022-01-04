@@ -14,6 +14,7 @@ class InsertProfileApi extends Api {
     };
     printDebugMode(payload);
     try {
+      await generateHeader();
       var response = await post(Uri.parse(url),
           body: json.encode(payload), headers: headers);
 

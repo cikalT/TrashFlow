@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:trashflow/pages/auth/auth_page.dart';
 import 'package:trashflow/pages/home/home_page.dart';
 import 'package:trashflow/pages/splash_screen/splash_screen_page.dart';
 
@@ -9,7 +10,11 @@ abstract class AppPages {
     GetPage(
         name: AppRoutes.splashScreenPage,
         page: () => const SplashScreenPage(),
-        transition: Transition.fadeIn),
+        transition: Transition.leftToRight),
+    GetPage(
+        name: AppRoutes.authPage,
+        page: () => const AuthPage(),
+        transition: Transition.leftToRight),
     GetPage(
         name: AppRoutes.homePage,
         page: () => const HomePage(),

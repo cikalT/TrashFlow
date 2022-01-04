@@ -17,11 +17,6 @@ class CreatePostApi extends Api {
     required String categories,
     required File image,
   }) async {
-    headers = {
-      'Content-Type': 'application/json',
-      'Accept': 'application/json',
-      'email': email
-    };
     payload = {
       "title": title,
       "description": description,
@@ -32,6 +27,7 @@ class CreatePostApi extends Api {
     };
     printDebugMode(payload);
     try {
+      await generateHeader();
       var response = await post(Uri.parse(url),
           body: json.encode(payload), headers: headers);
 

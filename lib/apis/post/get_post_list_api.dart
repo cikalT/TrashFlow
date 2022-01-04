@@ -9,13 +9,9 @@ class GetPostListApi extends Api {
   Future<ResultApi> request(
     String type,
   ) async {
-    headers = {
-      'Content-Type': 'application/json',
-      'Accept': 'application/json',
-      "type": type,
-    };
     printDebugMode(payload);
     try {
+      await generateHeader();
       var response = await get(
         Uri.parse(url),
         headers: headers,

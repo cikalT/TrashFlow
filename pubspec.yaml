@@ -42,6 +42,7 @@ dependencies:
   flutter_easyrefresh: ^2.2.1
   cached_network_image: ^3.2.0
   salomon_bottom_bar: ^3.2.0
+  flutter_signin_button: ^2.0.0
   getwidget: ^2.0.4
   flutter_multi_formatter: ^2.5.1
   flutter_localizations:
@@ -68,12 +69,14 @@ dependencies:
   firebase_remote_config: ^1.0.3
   firebase_crashlytics: ^2.4.4
   firebase_dynamic_links: ^4.0.3
+  firebase_auth: ^3.3.4
   firebase_analytics: ^9.0.4
   dotted_border: ^2.0.0+1
 #  basic_utils: ^3.9.4
   sizer: ^2.0.15
   vibration: ^1.7.3
   flutter_toggle_tab: ^1.1.7
+  motion_toast: ^2.0.0
   overlay_support: ^1.2.1
   flutter_cache_manager: ^3.3.0
   location: ^4.3.0

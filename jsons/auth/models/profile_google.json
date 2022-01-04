@@ -1,0 +1,8 @@
+{
+  "email": "email@mail.com",
+  "display_name": "Display Name",
+  "photo_url": "httpphotourl",
+  "refresh_token": "refresh_token",
+  "tenant_uuid": "tenant_id",
+  "uid": "uid"
+}

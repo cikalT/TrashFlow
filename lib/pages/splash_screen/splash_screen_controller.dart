@@ -1,10 +1,7 @@
 import 'dart:async';
-
-import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
-import 'package:trashflow/apis/auth/insert_profile_api.dart';
 import 'package:trashflow/base/base_controller.dart';
-import 'package:trashflow/helpers/index.dart';
+import 'package:trashflow/configs/shared_pref_config.dart';
 import 'package:trashflow/models/index.dart';
 import 'package:trashflow/routes/app_pages.dart';
 
@@ -22,8 +19,13 @@ class SplashScreenController extends BaseController {
   void onReady() async {
     isLoading = false;
     update();
-    Timer(const Duration(seconds: 3), () {
-      Get.offAllNamed(AppRoutes.homePage);
+    Timer(const Duration(seconds: 3), () async {
+      bool isLogin = await SharedPrefConfig.isLogin();
+      if (isLogin) {
+        Get.offAllNamed(AppRoutes.homePage);
+      } else {
+        Get.offAllNamed(AppRoutes.authPage);
+      }
     });
     super.onReady();
   }
@@ -38,15 +40,5 @@ class SplashScreenController extends BaseController {
   void onClose() {
     //code here
     super.onClose();
-  }
-
-  testApi() async {
-    var result =
-        await InsertProfileApi().request(email: 'cikaltaruna@gmail.com');
-    if (result.success ?? false) {
-      profileData = result.data;
-    } else {
-      printDebugMode('fail');
-    }
   }
 }

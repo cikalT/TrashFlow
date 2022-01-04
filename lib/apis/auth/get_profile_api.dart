@@ -11,11 +11,7 @@ class GetProfileApi extends Api {
   ) async {
     printDebugMode(payload);
     try {
-      headers = {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json',
-        'email': email
-      };
+      await generateHeader();
       var response = await get(Uri.parse(url), headers: headers);
 
       if (checkStatus200(response)) {

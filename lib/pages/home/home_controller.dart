@@ -1,11 +1,10 @@
-import 'package:flutter/foundation.dart';
-import 'package:trashflow/apis/auth/insert_profile_api.dart';
+import 'package:get/get.dart';
 import 'package:trashflow/base/base_controller.dart';
-import 'package:trashflow/helpers/index.dart';
-import 'package:trashflow/models/index.dart';
+import 'package:motion_toast/motion_toast.dart';
+import 'package:trashflow/themes/index.dart';
 
 class HomeController extends BaseController {
-
+  bool isFromLogin = false;
   int currentIndex = 0;
 
   @override
@@ -17,9 +16,20 @@ class HomeController extends BaseController {
 
   @override
   void onReady() async {
-    // await testApi();
+    if (screenArguments?.state != null) {
+      isFromLogin = screenArguments?.state ?? false;
+    }
     isLoading = false;
     update();
+    if (isFromLogin) {
+      MotionToast.success(
+              title: 'Welcome Back!',
+              titleStyle: StyleTheme.headerTs.copyWith(),
+              description: 'Lets start conserve the environment',
+              descriptionStyle: StyleTheme.textTs.copyWith(),
+              width: 300)
+          .show(Get.context!);
+    }
     super.onReady();
   }
 

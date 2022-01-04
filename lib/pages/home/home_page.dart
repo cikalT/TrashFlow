@@ -45,7 +45,7 @@ class HomePage extends StatelessWidget {
             ),
             SalomonBottomBarItem(
               icon: const Icon(Icons.add_circle),
-              title: const Text('Add Post'),
+              title: const Text('Create'),
               selectedColor: ColorTheme.primaryColor,
             ),
             SalomonBottomBarItem(

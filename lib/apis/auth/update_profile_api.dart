@@ -3,7 +3,7 @@ import 'package:trashflow/apis/api.dart';
 import 'package:trashflow/configs/app_config.dart';
 import 'package:trashflow/models/index.dart';
 
-class InsertProfileApi extends Api {
+class UpdateProfileApi extends Api {
   String url = AppConfig.getApiUrl + '/user';
 
   Future<ResultApi> request({
@@ -24,6 +24,7 @@ class InsertProfileApi extends Api {
     };
     printDebugMode(payload);
     try {
+      await generateHeader();
       var response = await post(Uri.parse(url),
           body: json.encode(payload), headers: headers);
 

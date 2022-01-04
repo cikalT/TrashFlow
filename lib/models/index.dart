@@ -1,4 +1,5 @@
 export 'auth/models/profile_data.dart';
+export 'auth/models/profile_google.dart';
 export 'auth/responses/get_profile_response.dart';
 export 'misc/result_api.dart';
 export 'misc/screen_arguments.dart';

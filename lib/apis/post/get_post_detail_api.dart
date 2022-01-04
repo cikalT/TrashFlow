@@ -9,6 +9,7 @@ class GetPostDetailApi extends Api {
   Future<ResultApi> request(String postId) async {
     url += '/$postId';
     try {
+      await generateHeader();
       var response = await get(Uri.parse(url), headers: headers);
 
       if (checkStatus200(response)) {
