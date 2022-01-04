@@ -1,8 +1,12 @@
+import 'dart:async';
+
 import 'package:flutter/foundation.dart';
+import 'package:get/get.dart';
 import 'package:trashflow/apis/auth/insert_profile_api.dart';
 import 'package:trashflow/base/base_controller.dart';
 import 'package:trashflow/helpers/index.dart';
 import 'package:trashflow/models/index.dart';
+import 'package:trashflow/routes/app_pages.dart';
 
 class SplashScreenController extends BaseController {
   ProfileData? profileData;
@@ -16,9 +20,11 @@ class SplashScreenController extends BaseController {
 
   @override
   void onReady() async {
-    await testApi();
     isLoading = false;
     update();
+    Timer(const Duration(seconds: 3), () {
+      Get.offAllNamed(AppRoutes.homePage);
+    });
     super.onReady();
   }
 
@@ -40,7 +46,7 @@ class SplashScreenController extends BaseController {
     if (result.success ?? false) {
       profileData = result.data;
     } else {
-      UtilHelper.printDebugMode('fail');
+      printDebugMode('fail');
     }
   }
 }

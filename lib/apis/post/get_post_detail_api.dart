@@ -3,23 +3,17 @@ import 'package:trashflow/apis/api.dart';
 import 'package:trashflow/configs/app_config.dart';
 import 'package:trashflow/models/index.dart';
 
-class InsertProfileApi extends Api {
-  String url = AppConfig.getApiUrl + '/user';
+class GetPostDetailApi extends Api {
+  String url = AppConfig.getApiUrl + '/post';
 
-  Future<ResultApi> request({
-    required String email,
-  }) async {
-    payload = {
-      "email": email,
-    };
-    printDebugMode(payload);
+  Future<ResultApi> request(String postId) async {
+    url += '/$postId';
     try {
-      var response = await post(Uri.parse(url),
-          body: json.encode(payload), headers: headers);
+      var response = await get(Uri.parse(url), headers: headers);
 
       if (checkStatus200(response)) {
         var responseBody = json.decode(response.body);
-        var data = GetProfileResponse.fromJson(responseBody);
+        var data = GetPostDetailResponse.fromJson(responseBody);
         printDebugMode(responseBody);
         resultApi.success = true;
         resultApi.message = data.message;

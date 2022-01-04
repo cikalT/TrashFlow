@@ -4,5 +4,8 @@ export 'misc/result_api.dart';
 export 'misc/screen_arguments.dart';
 export 'post/models/post_author.dart';
 export 'post/models/post_data.dart';
+export 'post/responses/create_post_response.dart';
+export 'post/responses/delete_post_response.dart';
 export 'post/responses/get_post_detail_response.dart';
 export 'post/responses/get_post_list_response.dart';
+export 'post/responses/update_post_response.dart';

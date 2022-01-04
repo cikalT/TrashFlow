@@ -1,27 +1,27 @@
 import 'package:http/http.dart';
 import 'package:trashflow/apis/api.dart';
 import 'package:trashflow/configs/app_config.dart';
-import 'package:trashflow/helpers/index.dart';
 import 'package:trashflow/models/index.dart';
 
 class GetProfileApi extends Api {
   String url = AppConfig.getApiUrl + '/user';
 
-  Future<ResultApi> request({
-    required String email,
-  }) async {
-    payload = {
-      "email": email,
-    };
-    UtilHelper.printDebugMode(payload);
+  Future<ResultApi> request(
+    String email,
+  ) async {
+    printDebugMode(payload);
     try {
-      var response = await post(Uri.parse(url),
-          body: json.encode(payload), headers: headers);
+      headers = {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'email': email
+      };
+      var response = await get(Uri.parse(url), headers: headers);
 
       if (checkStatus200(response)) {
         var responseBody = json.decode(response.body);
         var data = GetProfileResponse.fromJson(responseBody);
-        UtilHelper.printDebugMode(responseBody);
+        printDebugMode(responseBody);
         resultApi.success = true;
         resultApi.message = data.message;
         resultApi.data = data.data;

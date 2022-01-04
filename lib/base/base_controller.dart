@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:get/get.dart';
 import 'package:trashflow/models/index.dart';
@@ -64,19 +65,11 @@ class BaseController extends GetxController {
     return true;
   }
 
-  // getUserData() async {
-  //   User? user = await AuthService.getUserData();
-  //   if (user == null) {
-  //     var result = await MeApi().request();
-  //     if (result.status ?? false) {
-  //       user = result.data;
-  //       if (user != null) {
-  //         await AuthService.setUserData(user);
-  //       }
-  //     }
-  //   }
-  //   return user;
-  // }
+  printDebugMode(dynamic printValue) {
+    if (kDebugMode) {
+      print(printValue);
+    }
+  }
 
   enterRouteSlideUp({required Widget page, dynamic arguments}) {
     Navigator.of(Get.context!).push(moveSlideUp(page));

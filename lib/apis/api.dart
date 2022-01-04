@@ -4,11 +4,12 @@ import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as HttpResponse;
 import 'package:http/http.dart';
+import 'package:trashflow/base/base_controller.dart';
 import 'package:trashflow/helpers/index.dart';
 import 'package:trashflow/models/index.dart';
 export 'dart:convert';
 
-class Api {
+class Api extends BaseController {
   ResultApi resultApi = ResultApi()..success = false;
   String url = '';
   String msx = '';
@@ -28,6 +29,7 @@ class Api {
     }
     AlertHelper.showAlertError(e.toString(),
         title: 'Error Parsing API', alertType: AlertType.dialog);
+    printDebugMode(e);
   }
 
   checkStatus200(HttpResponse.Response response) {

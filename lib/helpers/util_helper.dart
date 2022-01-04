@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
 import 'dart:io';
 
@@ -151,11 +150,5 @@ class UtilHelper {
       url += x;
     }
     return url;
-  }
-
-  static void printDebugMode(dynamic printValue) {
-    if (kDebugMode) {
-      print(printValue);
-    }
   }
 }
