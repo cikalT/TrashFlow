@@ -1,6 +1,7 @@
+import 'dart:async';
 import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:trashflow/apis/auth/get_profile_api.dart';
+import 'package:location/location.dart';
 import 'package:trashflow/base/base_controller.dart';
 import 'package:motion_toast/motion_toast.dart';
 import 'package:trashflow/configs/shared_pref_config.dart';
@@ -16,6 +17,11 @@ class HomeController extends BaseController {
 
   ProfileGoogle? profileGoogle;
   ProfileData? profileData;
+
+  Location location = Location();
+  bool serviceEnabled = false;
+  PermissionStatus? permissionGranted;
+  LocationData? locationData;
 
   @override
   void onInit() async {
@@ -41,6 +47,21 @@ class HomeController extends BaseController {
               width: 300)
           .show(Get.context!);
     }
+    if (!serviceEnabled) {
+      serviceEnabled = await location.requestService();
+      if (!serviceEnabled) {
+        return;
+      }
+    }
+
+    permissionGranted = await location.hasPermission();
+    if (permissionGranted == PermissionStatus.denied) {
+      permissionGranted = await location.requestPermission();
+      if (permissionGranted != PermissionStatus.granted) {
+        permissionGranted = await location.requestPermission();
+      }
+    }
+    locationData = await location.getLocation();
     super.onReady();
   }
 
@@ -132,7 +153,16 @@ class HomeController extends BaseController {
     bool isDestroy = await SharedPrefConfig.removeSession();
     if (isDestroy) {
       googleSignIn.disconnect();
-      Get.offAllNamed(AppRoutes.splashScreenPage);
+      MotionToast.warning(
+              title: 'Log Out',
+              titleStyle: StyleTheme.headerTs.copyWith(),
+              description: 'You will be redirected to Auth',
+              descriptionStyle: StyleTheme.textTs.copyWith(),
+              width: 320)
+          .show(Get.context!);
+      Timer(const Duration(seconds: 3), () {
+        Get.offAllNamed(AppRoutes.splashScreenPage);
+      });
     }
   }
   //end profile section function

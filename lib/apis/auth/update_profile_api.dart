@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:http/http.dart';
 import 'package:trashflow/apis/api.dart';
 import 'package:trashflow/configs/app_config.dart';
@@ -11,7 +9,6 @@ class UpdateProfileApi extends Api {
   Future<ResultApi> request({
     required String email,
     required String address,
-    // required File image,
     required String phone,
     required double latitude,
     required double longitude,
@@ -19,7 +16,6 @@ class UpdateProfileApi extends Api {
     payload = {
       "email": email,
       "address": address,
-      // "image": image,
       "phone": phone,
       "latitude": latitude,
       "longitude": longitude,

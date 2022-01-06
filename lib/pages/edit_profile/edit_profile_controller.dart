@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:io';
 import 'package:get/get.dart';
+import 'package:location/location.dart';
 import 'package:trashflow/apis/auth/update_profile_api.dart';
 import 'package:trashflow/base/base_controller.dart';
 import 'package:trashflow/configs/shared_pref_config.dart';
@@ -10,6 +11,11 @@ import 'package:trashflow/routes/app_pages.dart';
 class EditProfileController extends BaseController {
   ProfileGoogle? profileGoogle;
   ProfileData? profileData;
+
+  Location location = Location();
+  bool serviceEnabled = false;
+  PermissionStatus? permissionGranted;
+  LocationData? locationData;
 
   TextEditingController fieldWhatsappNumber = TextEditingController();
   bool isEmptyFieldWhatsapp = true;
@@ -31,6 +37,21 @@ class EditProfileController extends BaseController {
     fieldAddress.text = profileData?.address ?? '';
     isLoading = false;
     update();
+    if (!serviceEnabled) {
+      serviceEnabled = await location.requestService();
+      if (!serviceEnabled) {
+        return;
+      }
+    }
+
+    permissionGranted = await location.hasPermission();
+    if (permissionGranted == PermissionStatus.denied) {
+      permissionGranted = await location.requestPermission();
+      if (permissionGranted != PermissionStatus.granted) {
+        permissionGranted = await location.requestPermission();
+      }
+    }
+    locationData = await location.getLocation();
     super.onReady();
   }
 
@@ -46,16 +67,14 @@ class EditProfileController extends BaseController {
     super.onClose();
   }
 
-  tapUploadPicture() {}
-
   tapSave() async {
     isLoading = true;
     update();
     String email = profileGoogle?.email ?? '';
     String address = fieldAddress.text;
     String phone = fieldWhatsappNumber.text;
-    double latitude = 0;
-    double longitude = 0;
+    double latitude = locationData?.latitude ?? 0;
+    double longitude = locationData?.longitude ?? 0;
     if (address.isNotEmpty && phone.isNotEmpty) {
       var result = await UpdateProfileApi().request(
           email: email,

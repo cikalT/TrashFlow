@@ -31,7 +31,7 @@ class EditProfilePage extends StatelessWidget {
               padding: const EdgeInsets.all(12),
               textStyle: StyleTheme.textBoldTs
                   .copyWith(color: ColorTheme.whiteColor, fontSize: 16),
-              label: 'Save',
+              label: 'Update Profile & Location',
               color: ColorTheme.primaryColor,
               onPressed: () {
                 controller.tapSave();
