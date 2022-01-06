@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:get/get.dart';
+import 'package:trashflow/apis/auth/get_profile_api.dart';
+import 'package:trashflow/configs/shared_pref_config.dart';
 import 'package:trashflow/models/index.dart';
 export 'package:flutter/material.dart';
 
@@ -71,26 +73,17 @@ class BaseController extends GetxController {
     }
   }
 
-  enterRouteSlideUp({required Widget page, dynamic arguments}) {
-    Navigator.of(Get.context!).push(moveSlideUp(page));
+  getProfileGoogle() async {
+    ProfileGoogle? profileGoogle = await SharedPrefConfig.getUserData();
+    return profileGoogle;
   }
 
-  Route moveSlideUp(Widget page) {
-    return PageRouteBuilder(
-      pageBuilder: (context, animation, secondaryAnimation) => page,
-      transitionsBuilder: (context, animation, secondaryAnimation, child) {
-        var begin = const Offset(0.0, 1.0);
-        var end = Offset.zero;
-        var curve = Curves.ease;
-
-        var tween =
-            Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
-
-        return SlideTransition(
-          position: animation.drive(tween),
-          child: child,
-        );
-      },
-    );
+  getUserProfile(ProfileGoogle? profileGoogle) async {
+    ProfileData? profileData;
+    var result = await GetProfileApi().request(profileGoogle?.email ?? '');
+    if (result.success ?? false) {
+      profileData = result.data as ProfileData?;
+    }
+    return profileData;
   }
 }

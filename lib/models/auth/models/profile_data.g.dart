@@ -14,8 +14,8 @@ ProfileData _$ProfileDataFromJson(Map<String, dynamic> json) {
     ..address = json['address'] as String?
     ..createdAt = json['created_at'] as String?
     ..image = json['image'] as String?
-    ..latitude = json['latitude'] as int?
-    ..longitude = json['longitude'] as int?
+    ..latitude = (json['latitude'] as num?)?.toDouble()
+    ..longitude = (json['longitude'] as num?)?.toDouble()
     ..updatedAt = json['updated_at'] as String?
     ..phone = json['phone'] as String?;
 }

@@ -29,8 +29,7 @@ class HomePage extends StatelessWidget {
         bottomNavigationBar: SalomonBottomBar(
           currentIndex: controller.currentIndex,
           onTap: (i) {
-            controller.currentIndex = i;
-            controller.update();
+            controller.tapMenu(i);
           },
           items: [
             SalomonBottomBarItem(
@@ -60,25 +59,27 @@ class HomePage extends StatelessWidget {
             ),
           ],
         ),
-        child: Column(
-          children: [
-            const SizedBox(
-              height: 16,
-            ),
-            if (controller.currentIndex == 0)
-              const HomeSection()
-            else if (controller.currentIndex == 1)
-              const SellSection()
-            else if (controller.currentIndex == 2)
-              const AddPostSection()
-            else if (controller.currentIndex == 3)
-              const BuySection()
-            else if (controller.currentIndex == 4)
-              const ProfileSection(),
-            const SizedBox(
-              height: 16,
-            ),
-          ],
+        child: SingleChildScrollView(
+          physics: controller.currentIndex == 4
+              ? const NeverScrollableScrollPhysics()
+              : null,
+          child: Column(
+            children: [
+              if (controller.currentIndex == 0)
+                const HomeSection()
+              else if (controller.currentIndex == 1)
+                const SellSection()
+              else if (controller.currentIndex == 2)
+                const AddPostSection()
+              else if (controller.currentIndex == 3)
+                const BuySection()
+              else if (controller.currentIndex == 4)
+                const ProfileSection(),
+              const SizedBox(
+                height: 16,
+              ),
+            ],
+          ),
         ),
       ),
     );
