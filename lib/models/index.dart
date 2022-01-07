@@ -1,6 +1,8 @@
 export 'auth/models/profile_data.dart';
 export 'auth/models/profile_google.dart';
 export 'auth/responses/get_profile_response.dart';
+export 'local/models/faq_data.dart';
+export 'local/responses/get_fqa_list_response.dart';
 export 'misc/result_api.dart';
 export 'misc/screen_arguments.dart';
 export 'post/models/post_author.dart';

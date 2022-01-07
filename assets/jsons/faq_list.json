@@ -1,0 +1,46 @@
+{
+  "success": true,
+  "data": [
+    {
+  "id": 1,
+  "title": "How to sort my trash?",
+  "desc": "You can sort your trash my separating organic trash and non organic trash. You can also separate by materials such as plastic, paper, cloths, iron, and others."
+},
+{
+  "id": 2,
+  "title": "What is the minimum weight required to sell my trash?",
+  "desc": "The minimum weight is 100 gram."
+},
+{
+  "id": 3,
+  "title": "Must the trash be cleaned beforehand?",
+  "desc": "Yes, non organic trashes such as bottles and plastic wares  should be cleaned beforehand. This is to keep things sanitary and so that buyers will be more interested to buy your trash."
+},
+{
+  "id": 4,
+  "title": "How do I store or sell my organic trashes properly?",
+  "desc": "Organic trashes should be stored in sealed containers and labeled  properly. The contains of the container should also be described if possible."
+},
+{
+  "id": 5,
+  "title": "Are there any requirements for the condition of the trash?",
+  "desc": "Non organic trash should be clean and not covered in dirt or other substances (such as mud, sauces, oil, etc) As for organic trashes they should be stored properly in a container."
+},
+{
+  "id": 6,
+  "title": "What should I do if I want to sell my trash?",
+  "desc": "Sort your trash into categories and store them/ clean them properly. Take a picture of them and upload it to the page along with the description and asking price"
+},
+{
+  "id": 7,
+  "title": "How do I communicate with the buyers or sellers?",
+  "desc": "You can contact the buyers or sellers through whatsapp"
+},
+{
+  "id": 8,
+  "title": "Is whatsapp number mandatory?",
+  "desc": "Yes because that is how buyers and sellers communicate. "
+}
+  ],
+  "message": ""
+}

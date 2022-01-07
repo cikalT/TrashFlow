@@ -108,9 +108,7 @@ dev_dependencies:
 flutter_icons:
   android: "launcher_icon"
   ios: true
-  image_path: "assets/trashflow_icon.png"
-  image_path_ios: "assets/trashflow_icon.png"
-  image_path_android: "assets/trashflow_icon.png"
+  image_path: "assets/launcher/icon1x1.png"
 
 # The following section is specific to Flutter.
 flutter:
@@ -125,6 +123,8 @@ flutter:
     - assets/
     - assets/images/
     - assets/icons/
+    - assets/launcher/
+    - assets/jsons/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
