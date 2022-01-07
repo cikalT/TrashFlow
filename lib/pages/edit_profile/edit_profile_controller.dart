@@ -63,7 +63,8 @@ class EditProfileController extends BaseController {
 
   @override
   void onClose() {
-    //code here
+    fieldWhatsappNumber.clear();
+    fieldAddress.clear();
     super.onClose();
   }
 

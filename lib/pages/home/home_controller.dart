@@ -18,10 +18,16 @@ class HomeController extends BaseController {
   ProfileGoogle? profileGoogle;
   ProfileData? profileData;
 
+  //location request component
   Location location = Location();
   bool serviceEnabled = false;
   PermissionStatus? permissionGranted;
   LocationData? locationData;
+
+  //add post component
+  TextEditingController fieldPostTitle = TextEditingController();
+  TextEditingController fieldPostDescription = TextEditingController();
+  TextEditingController fieldPostPrice = TextEditingController();
 
   @override
   void onInit() async {

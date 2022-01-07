@@ -36,13 +36,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.3.0"
-  asn1lib:
-    dependency: transitive
-    description:
-      name: asn1lib
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.0.3"
   async:
     dependency: transitive
     description:
@@ -197,34 +190,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.15.0"
-  connectivity:
-    dependency: "direct main"
-    description:
-      name: connectivity
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "3.0.6"
-  connectivity_for_web:
-    dependency: transitive
-    description:
-      name: connectivity_for_web
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.4.0+1"
-  connectivity_macos:
-    dependency: transitive
-    description:
-      name: connectivity_macos
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.2.1+2"
-  connectivity_platform_interface:
-    dependency: transitive
-    description:
-      name: connectivity_platform_interface
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "2.0.1"
   convert:
     dependency: transitive
     description:
@@ -281,13 +246,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "3.1.0"
-  encrypt:
-    dependency: "direct main"
-    description:
-      name: encrypt
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "5.0.1"
   expressions:
     dependency: transitive
     description:
@@ -597,20 +555,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.2"
-  geocoding:
-    dependency: "direct main"
-    description:
-      name: geocoding
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "2.0.1"
-  geocoding_platform_interface:
-    dependency: transitive
-    description:
-      name: geocoding_platform_interface
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "2.0.1"
   get:
     dependency: "direct main"
     description:
@@ -984,13 +928,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.2"
-  pointycastle:
-    dependency: transitive
-    description:
-      name: pointycastle
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "3.5.0"
   pool:
     dependency: transitive
     description:
@@ -1137,7 +1074,7 @@ packages:
     source: hosted
     version: "1.8.1"
   sqflite:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: sqflite
       url: "https://pub.dartlang.org"
@@ -1150,20 +1087,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.0"
-  sqflite_common_ffi:
-    dependency: "direct main"
-    description:
-      name: sqflite_common_ffi
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "2.1.0"
-  sqlite3:
-    dependency: transitive
-    description:
-      name: sqlite3
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.4.0"
   stack_trace:
     dependency: transitive
     description:

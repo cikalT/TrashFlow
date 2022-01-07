@@ -60,9 +60,7 @@ class HomePage extends StatelessWidget {
           ],
         ),
         child: SingleChildScrollView(
-          physics: controller.currentIndex == 4
-              ? const NeverScrollableScrollPhysics()
-              : null,
+          physics: const NeverScrollableScrollPhysics(),
           child: Column(
             children: [
               if (controller.currentIndex == 0)
