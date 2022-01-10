@@ -72,10 +72,10 @@ class AddPostSection extends StatelessWidget {
                       shapeRadius: 12,
                       selectedBorderColor: Colors.transparent,
                       unSelectedBorderColor: Colors.transparent,
-                      buttonTextStyle: const ButtonTextStyle(
-                        selectedColor: Colors.white,
-                        unSelectedColor: Colors.black,
-                        textStyle: TextStyle(fontSize: 16),
+                      buttonTextStyle: ButtonTextStyle(
+                        selectedColor: ColorTheme.whiteColor,
+                        unSelectedColor: ColorTheme.primaryColor,
+                        textStyle: const TextStyle(fontSize: 16),
                       ),
                       radioButtonValue: (value) {},
                       selectedColor: ColorTheme.primaryColor,
@@ -144,7 +144,7 @@ class AddPostSection extends StatelessWidget {
                         padding: const EdgeInsets.all(12),
                         textStyle: StyleTheme.textBoldTs.copyWith(
                             color: ColorTheme.whiteColor, fontSize: 16),
-                        label: 'Update Profile & Location',
+                        label: 'Create Post',
                         color: ColorTheme.primaryColor,
                         onPressed: () {},
                       ),

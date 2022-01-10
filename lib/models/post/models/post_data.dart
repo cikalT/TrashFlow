@@ -1,4 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
+import 'category_data.dart';
 import 'post_author.dart';
 
 part 'post_data.g.dart';
@@ -9,7 +10,8 @@ class PostData {
 
   @JsonKey(name: '_id') String? id;
   @JsonKey(name: '__v') int? v;
-  List<dynamic>? categories;
+  @JsonKey(name: 'category_ids') List<dynamic>? categoryIds;
+  CategoryData? categories;
   @JsonKey(name: 'created_at') String? createdAt;
   String? description;
   String? image;

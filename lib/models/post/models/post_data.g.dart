@@ -10,7 +10,10 @@ PostData _$PostDataFromJson(Map<String, dynamic> json) {
   return PostData()
     ..id = json['_id'] as String?
     ..v = json['__v'] as int?
-    ..categories = json['categories'] as List<dynamic>?
+    ..categoryIds = json['category_ids'] as List<dynamic>?
+    ..categories = json['categories'] == null
+        ? null
+        : CategoryData.fromJson(json['categories'] as Map<String, dynamic>)
     ..createdAt = json['created_at'] as String?
     ..description = json['description'] as String?
     ..image = json['image'] as String?
@@ -27,6 +30,7 @@ PostData _$PostDataFromJson(Map<String, dynamic> json) {
 Map<String, dynamic> _$PostDataToJson(PostData instance) => <String, dynamic>{
       '_id': instance.id,
       '__v': instance.v,
+      'category_ids': instance.categoryIds,
       'categories': instance.categories,
       'created_at': instance.createdAt,
       'description': instance.description,

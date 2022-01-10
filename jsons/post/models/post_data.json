@@ -1,10 +1,11 @@
 {
   "_id": "61b40f08fe48a23925a08140",
   "__v": 0,
-  "categories": [
-    "ORGANIC",
-    "CATTLE_MANURE"
+  "category_ids": [
+    "61d83b8edc7f55959d38169c",
+    "61d83c40dc7f55959d38d367"
   ],
+  "categories": "$category_data",
   "created_at": "2021-12-11T02:38:00.451Z",
   "description": "kotoran kambing sapi ayam",
   "image": "https://i.ibb.co/0m6TLfY/00bd3ae005d1.png",
