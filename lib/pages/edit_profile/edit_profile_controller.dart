@@ -1,12 +1,8 @@
-import 'dart:async';
-import 'dart:io';
 import 'package:get/get.dart';
 import 'package:location/location.dart';
 import 'package:trashflow/apis/auth/update_profile_api.dart';
 import 'package:trashflow/base/base_controller.dart';
-import 'package:trashflow/configs/shared_pref_config.dart';
 import 'package:trashflow/models/index.dart';
-import 'package:trashflow/routes/app_pages.dart';
 
 class EditProfileController extends BaseController {
   ProfileGoogle? profileGoogle;

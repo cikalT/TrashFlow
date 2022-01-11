@@ -1,6 +1,5 @@
 import 'package:trashflow/base/base_controller.dart';
 import 'package:trashflow/base/base_widget.dart';
-import 'package:trashflow/models/index.dart';
 import 'package:trashflow/routes/index.dart';
 import 'package:trashflow/themes/index.dart';
 import 'package:trashflow/widgets/button_text_style.dart';

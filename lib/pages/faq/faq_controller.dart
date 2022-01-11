@@ -1,10 +1,6 @@
-import 'dart:async';
-import 'package:get/get.dart';
 import 'package:trashflow/apis/local/get_faq_list_api.dart';
 import 'package:trashflow/base/base_controller.dart';
-import 'package:trashflow/configs/shared_pref_config.dart';
 import 'package:trashflow/models/index.dart';
-import 'package:trashflow/routes/app_pages.dart';
 
 class FaqController extends BaseController {
   List<FaqData?> faqDataList = [];

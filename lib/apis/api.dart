@@ -1,7 +1,7 @@
 import 'package:http/http.dart' as HttpResponse;
 import 'package:trashflow/base/base_controller.dart';
 import 'package:trashflow/configs/shared_pref_config.dart';
-import 'package:trashflow/helpers/index.dart';
+import 'package:trashflow/helpers/alert_helper.dart';
 import 'package:trashflow/models/index.dart';
 export 'dart:convert';
 
@@ -10,7 +10,6 @@ class Api extends BaseController {
   String url = '';
   String msx = '';
   bool showFailMessage = true;
-
 
   String accessEmail = '';
   var payload;

@@ -1,7 +1,5 @@
 import 'package:flutter/services.dart';
-import 'package:http/http.dart';
 import 'package:trashflow/apis/api.dart';
-import 'package:trashflow/configs/app_config.dart';
 import 'package:trashflow/models/index.dart';
 
 class GetFaqListLocalApi extends Api {
