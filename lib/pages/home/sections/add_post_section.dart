@@ -3,6 +3,8 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:trashflow/base/base_controller.dart';
 import 'package:trashflow/base/base_widget.dart';
+import 'package:trashflow/models/index.dart';
+import 'package:trashflow/routes/index.dart';
 import 'package:trashflow/themes/index.dart';
 import 'package:trashflow/widgets/button_text_style.dart';
 import 'package:trashflow/widgets/custom_radio_button.dart';
@@ -39,6 +41,7 @@ class AddPostSection extends StatelessWidget {
               height: 4,
             ),
             Container(
+              alignment: Alignment.center,
               width: MediaQuery.of(context).size.width,
               height: MediaQuery.of(context).size.height / 1.2,
               padding: const EdgeInsets.all(16),
@@ -50,107 +53,59 @@ class AddPostSection extends StatelessWidget {
                 ),
               ),
               child: SingleChildScrollView(
-                child: Column(
-                  mainAxisSize: MainAxisSize.max,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     const SizedBox(
-                      height: 8,
+                      width: 8,
                     ),
-                    CustomRadioButton(
-                      elevation: 0,
-                      padding: 4,
-                      unSelectedColor: ColorTheme.newBoxColor,
-                      buttonLables: const [
-                        'Sell',
-                        'Buy',
-                      ],
-                      buttonValues: const [
-                        "SELL",
-                        "ACCEPT_SELLING",
-                      ],
-                      radius: 12,
-                      shapeRadius: 12,
-                      selectedBorderColor: Colors.transparent,
-                      unSelectedBorderColor: Colors.transparent,
-                      buttonTextStyle: ButtonTextStyle(
-                        selectedColor: ColorTheme.whiteColor,
-                        unSelectedColor: ColorTheme.primaryColor,
-                        textStyle: const TextStyle(fontSize: 16),
-                      ),
-                      radioButtonValue: (value) {},
-                      selectedColor: ColorTheme.primaryColor,
-                    ),
-                    const SizedBox(
-                      height: 16,
-                    ),
-                    CustomTextField(
-                      controller: controller.fieldPostTitle,
-                      hintText: 'Title',
-                      filledColor: ColorTheme.newBoxColor,
-                      labelColor: ColorTheme.primaryColor,
-                      filledTextColor: ColorTheme.primaryColor,
-                      borderedMode: false,
-                      transparencyMode: true,
-                      maxLines: 1,
-                      keyboardType: TextInputType.text,
-                    ),
-                    CustomTextField(
-                      controller: controller.fieldPostTitle,
-                      hintText: 'Category',
-                      filledColor: ColorTheme.newBoxColor,
-                      labelColor: ColorTheme.primaryColor,
-                      filledTextColor: ColorTheme.primaryColor,
-                      borderedMode: false,
-                      transparencyMode: true,
-                      maxLines: 1,
-                      keyboardType: TextInputType.text,
-                    ),
-                    CustomTextField(
-                      controller: controller.fieldPostDescription,
-                      hintText: 'Description',
-                      filledColor: ColorTheme.newBoxColor,
-                      labelColor: ColorTheme.primaryColor,
-                      filledTextColor: ColorTheme.primaryColor,
-                      borderedMode: false,
-                      transparencyMode: true,
-                      minLines: 6,
-                      maxLines: 6,
-                    ),
-                    CustomTextField(
-                      controller: controller.fieldPostPrice,
-                      hintText: 'Price',
-                      prefixIcon: const Icon(Icons.price_change_outlined),
-                      filledColor: ColorTheme.newBoxColor,
-                      labelColor: ColorTheme.primaryColor,
-                      filledTextColor: ColorTheme.primaryColor,
-                      borderedMode: false,
-                      transparencyMode: true,
-                      maxLines: 1,
-                      keyboardType: TextInputType.number,
-                    ),
-                    CustomRaisedButton(
-                      radius: 8,
-                      padding: const EdgeInsets.all(12),
-                      textStyle: StyleTheme.textTs
-                          .copyWith(color: ColorTheme.newFontHeaderColor),
-                      label: 'Upload Photo',
-                      color: ColorTheme.newBoxColor,
-                      onPressed: () {},
-                    ),
-                    Container(
-                      padding: const EdgeInsets.all(16),
-                      child: CustomRaisedButton(
-                        radius: 16,
-                        padding: const EdgeInsets.all(12),
-                        textStyle: StyleTheme.textBoldTs.copyWith(
-                            color: ColorTheme.whiteColor, fontSize: 16),
-                        label: 'Create Post',
-                        color: ColorTheme.primaryColor,
-                        onPressed: () {},
+                    Expanded(
+                      child: SizedBox(
+                        height: 80,
+                        child: CustomRaisedButton(
+                          radius: 16,
+                          padding: const EdgeInsets.all(12),
+                          textStyle: StyleTheme.textBoldTs.copyWith(
+                              color: ColorTheme.whiteColor, fontSize: 16),
+                          label: 'Buy',
+                          color: ColorTheme.primaryColor,
+                          onPressed: () async {
+                            var result = await Get.toNamed(
+                                AppRoutes.createPostPage,
+                                arguments: ScreenArguments()..title = 'buy');
+                            if (result == 'ok') {
+                              print('oke');
+                            }
+                          },
+                        ),
                       ),
                     ),
                     const SizedBox(
-                      height: 32,
+                      width: 16,
+                    ),
+                    Expanded(
+                      child: SizedBox(
+                        height: 80,
+                        child: CustomRaisedButton(
+                          radius: 16,
+                          padding: const EdgeInsets.all(12),
+                          textStyle: StyleTheme.textBoldTs.copyWith(
+                              color: ColorTheme.whiteColor, fontSize: 16),
+                          label: 'Sell',
+                          color: ColorTheme.primaryColor,
+                          onPressed: () async {
+                            var result = await Get.toNamed(
+                                AppRoutes.createPostPage,
+                                arguments: ScreenArguments()..title = 'sell');
+                            if (result == 'ok') {
+                              print('oke');
+                            }
+                          },
+                        ),
+                      ),
+                    ),
+                    const SizedBox(
+                      width: 8,
                     ),
                   ],
                 ),

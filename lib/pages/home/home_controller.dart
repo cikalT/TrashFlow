@@ -24,11 +24,6 @@ class HomeController extends BaseController {
   PermissionStatus? permissionGranted;
   LocationData? locationData;
 
-  //add post component
-  TextEditingController fieldPostTitle = TextEditingController();
-  TextEditingController fieldPostDescription = TextEditingController();
-  TextEditingController fieldPostPrice = TextEditingController();
-
   @override
   void onInit() async {
     super.onInit();

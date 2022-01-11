@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:trashflow/pages/auth/auth_page.dart';
+import 'package:trashflow/pages/create_post/create_post_page.dart';
 import 'package:trashflow/pages/edit_profile/edit_profile_page.dart';
 import 'package:trashflow/pages/faq/faq_page.dart';
 import 'package:trashflow/pages/home/home_page.dart';
@@ -28,6 +29,10 @@ abstract class AppPages {
     GetPage(
         name: AppRoutes.faqPage,
         page: () => const FaqPage(),
+        transition: Transition.cupertino),
+    GetPage(
+        name: AppRoutes.createPostPage,
+        page: () => const CreatePostPage(),
         transition: Transition.cupertino),
   ];
 }
