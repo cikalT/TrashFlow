@@ -67,6 +67,7 @@ class EditProfileController extends BaseController {
   tapSave() async {
     isLoading = true;
     update();
+    String name = profileGoogle?.displayName ?? '';
     String email = profileGoogle?.email ?? '';
     String address = fieldAddress.text;
     String phone = fieldWhatsappNumber.text;
@@ -74,6 +75,7 @@ class EditProfileController extends BaseController {
     double longitude = locationData?.longitude ?? 0;
     if (address.isNotEmpty && phone.isNotEmpty) {
       var result = await UpdateProfileApi().request(
+          name: name,
           email: email,
           address: address,
           phone: phone,

@@ -8,6 +8,7 @@ part of 'post_author.dart';
 
 PostAuthor _$PostAuthorFromJson(Map<String, dynamic> json) {
   return PostAuthor()
+    ..name = json['name'] as String?
     ..id = json['_id'] as String?
     ..email = json['email'] as String?
     ..v = json['__v'] as int?
@@ -22,6 +23,7 @@ PostAuthor _$PostAuthorFromJson(Map<String, dynamic> json) {
 
 Map<String, dynamic> _$PostAuthorToJson(PostAuthor instance) =>
     <String, dynamic>{
+      'name': instance.name,
       '_id': instance.id,
       'email': instance.email,
       '__v': instance.v,

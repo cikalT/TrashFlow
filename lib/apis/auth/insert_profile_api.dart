@@ -7,11 +7,11 @@ class InsertProfileApi extends Api {
   String url = AppConfig.getApiUrl + '/user';
 
   Future<ResultApi> request({
+    required String name,
     required String email,
+    required String imageUrl,
   }) async {
-    payload = {
-      "email": email,
-    };
+    payload = {"name": name, "email": email, "image": imageUrl};
     printDebugMode(payload);
     try {
       await generateHeader();

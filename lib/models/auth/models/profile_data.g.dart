@@ -8,6 +8,7 @@ part of 'profile_data.dart';
 
 ProfileData _$ProfileDataFromJson(Map<String, dynamic> json) {
   return ProfileData()
+    ..name = json['name'] as String?
     ..id = json['_id'] as String?
     ..email = json['email'] as String?
     ..v = json['__v'] as int?
@@ -22,6 +23,7 @@ ProfileData _$ProfileDataFromJson(Map<String, dynamic> json) {
 
 Map<String, dynamic> _$ProfileDataToJson(ProfileData instance) =>
     <String, dynamic>{
+      'name': instance.name,
       '_id': instance.id,
       'email': instance.email,
       '__v': instance.v,

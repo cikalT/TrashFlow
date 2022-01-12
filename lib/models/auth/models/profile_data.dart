@@ -7,6 +7,7 @@ part 'profile_data.g.dart';
 class ProfileData {
       ProfileData();
 
+  String? name;
   @JsonKey(name: '_id') String? id;
   String? email;
   @JsonKey(name: '__v') int? v;

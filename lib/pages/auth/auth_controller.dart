@@ -58,8 +58,10 @@ class AuthController extends BaseController {
   }
 
   upsertProfile(User? googleAuthUser) async {
-    var result =
-        await InsertProfileApi().request(email: googleAuthUser?.email ?? '');
+    var result = await InsertProfileApi().request(
+        name: googleAuthUser?.displayName ?? '',
+        email: googleAuthUser?.email ?? '',
+        imageUrl: googleAuthUser?.photoURL ?? '');
     if (result.success ?? false) {
       profileData = result.data;
       isLoading = false;

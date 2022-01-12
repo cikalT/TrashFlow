@@ -7,6 +7,7 @@ class UpdateProfileApi extends Api {
   String url = AppConfig.getApiUrl + '/user';
 
   Future<ResultApi> request({
+    required String name,
     required String email,
     required String address,
     required String phone,
@@ -14,6 +15,7 @@ class UpdateProfileApi extends Api {
     required double longitude,
   }) async {
     payload = {
+      "name": name,
       "email": email,
       "address": address,
       "phone": phone,

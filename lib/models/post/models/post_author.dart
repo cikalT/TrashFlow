@@ -7,6 +7,7 @@ part 'post_author.g.dart';
 class PostAuthor {
       PostAuthor();
 
+  String? name;
   @JsonKey(name: '_id') String? id;
   String? email;
   @JsonKey(name: '__v') int? v;
