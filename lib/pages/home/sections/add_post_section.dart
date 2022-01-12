@@ -63,13 +63,8 @@ class AddPostSection extends StatelessWidget {
                               color: ColorTheme.whiteColor, fontSize: 16),
                           label: 'Buy',
                           color: ColorTheme.primaryColor,
-                          onPressed: () async {
-                            var result = await Get.toNamed(
-                                AppRoutes.createPostPage,
-                                arguments: ScreenArguments()..title = 'buy');
-                            if (result == 'ok') {
-                              print('oke');
-                            }
+                          onPressed: () {
+                            controller.tapCreatePost('buy');
                           },
                         ),
                       ),
@@ -87,13 +82,8 @@ class AddPostSection extends StatelessWidget {
                               color: ColorTheme.whiteColor, fontSize: 16),
                           label: 'Sell',
                           color: ColorTheme.primaryColor,
-                          onPressed: () async {
-                            var result = await Get.toNamed(
-                                AppRoutes.createPostPage,
-                                arguments: ScreenArguments()..title = 'sell');
-                            if (result == 'ok') {
-                              print('oke');
-                            }
+                          onPressed: () {
+                            controller.tapCreatePost('sell');
                           },
                         ),
                       ),

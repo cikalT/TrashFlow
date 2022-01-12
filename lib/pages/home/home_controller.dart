@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:location/location.dart';
+import 'package:trashflow/apis/post/get_user_post_list_api.dart';
 import 'package:trashflow/base/base_controller.dart';
 import 'package:motion_toast/motion_toast.dart';
 import 'package:trashflow/configs/shared_pref_config.dart';
@@ -24,6 +25,9 @@ class HomeController extends BaseController {
   PermissionStatus? permissionGranted;
   LocationData? locationData;
 
+  //home
+  List<PostData?> postDataList = [];
+
   @override
   void onInit() async {
     super.onInit();
@@ -37,6 +41,7 @@ class HomeController extends BaseController {
     if (screenArguments?.state != null) {
       isFromLogin = screenArguments?.state ?? false;
     }
+    loadMenuData(currentIndex);
     isLoading = false;
     update();
     if (isFromLogin) {
@@ -89,7 +94,10 @@ class HomeController extends BaseController {
   }
 
   loadMenuData(int index) async {
+    isLoading = true;
+    update();
     if (index == 0) {
+      await getPostList();
       isLoading = false;
       update();
     } else if (index == 1) {
@@ -112,15 +120,42 @@ class HomeController extends BaseController {
     profileGoogle = await getProfileGoogle();
     profileData = await getUserProfile(profileGoogle);
   }
+
+  tapPost(PostData? postData, int index, bool status) {
+    printDebugMode(index);
+  }
   //end main call function
 
   //start home section function
+  getPostList() async {
+    var result = await GetUserPostListApi().request();
+    if (result.success ?? false) {
+      postDataList = result.listData as List<PostData?>;
+
+      for (var element in postDataList) {
+        printDebugMode(element?.id);
+      }
+    }
+  }
   //end home section function
 
   //start sell section function
   //end sell section function
 
   //start add post section function
+  tapCreatePost(String type) async {
+    var result = await Get.toNamed(AppRoutes.createPostPage,
+        arguments: ScreenArguments()..title = type);
+    if (result == 'ok') {
+      MotionToast.success(
+              title: 'Item Posted',
+              titleStyle: StyleTheme.headerTs.copyWith(),
+              description: 'Success create post',
+              descriptionStyle: StyleTheme.textTs.copyWith(),
+              width: 300)
+          .show(Get.context!);
+    }
+  }
   //end add post section function
 
   //start buy section function

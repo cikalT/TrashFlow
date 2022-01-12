@@ -5,6 +5,7 @@ import 'package:trashflow/base/base_controller.dart';
 import 'package:trashflow/base/base_widget.dart';
 import 'package:trashflow/themes/index.dart';
 import 'package:trashflow/widgets/custom_raised_button.dart';
+import 'package:trashflow/widgets/post_item.dart';
 
 import '../home_controller.dart';
 
@@ -50,9 +51,20 @@ class HomeSection extends StatelessWidget {
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
                   children: [
+                    Column(
+                      children: List.generate(
+                        controller.postDataList.length,
+                        (index) => PostItem(
+                          postData: controller.postDataList[index],
+                          index: index,
+                          onTap: () => controller.tapPost(
+                              controller.postDataList[index], index, true),
+                        ),
+                      ),
+                    ),
                     const SizedBox(
                       height: 32,
-                    )
+                    ),
                   ],
                 ),
               ),

@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:http/http.dart' as HttpResponse;
 import 'package:trashflow/base/base_controller.dart';
 import 'package:trashflow/configs/shared_pref_config.dart';
@@ -39,6 +41,23 @@ class Api extends BaseController {
   checkStatus200(HttpResponse.Response response) {
     bool doNext = false;
     if (response.statusCode == 200 || response.statusCode == 201) {
+      doNext = true;
+    }
+    return doNext;
+  }
+
+  checkStatus200X(HttpResponse.StreamedResponse response) async {
+    bool doNext = false;
+    msx = await response.stream.bytesToString();
+    Map<String, dynamic> responseBody = json.decode(msx);
+    printDebugMode(responseBody);
+    if (response.statusCode == 200 || response.statusCode == 201) {
+      String message =
+          responseBody.containsKey('message') ? responseBody['message'] : '';
+      List<dynamic> messages =
+          responseBody.containsKey('messages') ? responseBody['messages'] : '';
+      resultApi.message =
+          messages.first != null ? messages.first.toString() : message;
       doNext = true;
     }
     return doNext;

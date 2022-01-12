@@ -11,9 +11,6 @@ PostData _$PostDataFromJson(Map<String, dynamic> json) {
     ..id = json['_id'] as String?
     ..v = json['__v'] as int?
     ..categoryIds = json['category_ids'] as List<dynamic>?
-    ..categories = json['categories'] == null
-        ? null
-        : CategoryData.fromJson(json['categories'] as Map<String, dynamic>)
     ..createdAt = json['created_at'] as String?
     ..description = json['description'] as String?
     ..image = json['image'] as String?
@@ -24,14 +21,17 @@ PostData _$PostDataFromJson(Map<String, dynamic> json) {
     ..userId = json['user_id'] as String?
     ..author = json['author'] == null
         ? null
-        : PostAuthor.fromJson(json['author'] as Map<String, dynamic>);
+        : PostAuthor.fromJson(json['author'] as Map<String, dynamic>)
+    ..categories = (json['categories'] as List<dynamic>?)
+        ?.map((e) =>
+            e == null ? null : CategoryData.fromJson(e as Map<String, dynamic>))
+        .toList();
 }
 
 Map<String, dynamic> _$PostDataToJson(PostData instance) => <String, dynamic>{
       '_id': instance.id,
       '__v': instance.v,
       'category_ids': instance.categoryIds,
-      'categories': instance.categories,
       'created_at': instance.createdAt,
       'description': instance.description,
       'image': instance.image,
@@ -41,4 +41,5 @@ Map<String, dynamic> _$PostDataToJson(PostData instance) => <String, dynamic>{
       'updated_at': instance.updatedAt,
       'user_id': instance.userId,
       'author': instance.author,
+      'categories': instance.categories,
     };

@@ -36,7 +36,9 @@ class CreatePostPage extends StatelessWidget {
                   .copyWith(color: ColorTheme.whiteColor, fontSize: 16),
               label: 'Create Post',
               color: ColorTheme.primaryColor,
-              onPressed: () {},
+              onPressed: () {
+                controller.tapCreatePost();
+              },
             ),
           ),
         ),
@@ -50,7 +52,7 @@ class CreatePostPage extends StatelessWidget {
                   centerTitle: true,
                   backgroundColor: ColorTheme.whiteColor,
                   title: Text(
-                    'Create Post',
+                    'Create Post - ${controller.postType.capitalizeFirst}',
                     style: StyleTheme.textBoldTs
                         .copyWith(color: ColorTheme.primaryColor, fontSize: 16),
                   ),
@@ -73,33 +75,33 @@ class CreatePostPage extends StatelessWidget {
                       const SizedBox(
                         height: 8,
                       ),
-                      CustomRadioButton(
-                        elevation: 0,
-                        padding: 4,
-                        unSelectedColor: ColorTheme.newBoxColor,
-                        buttonLables: const [
-                          'Sell',
-                          'Buy',
-                        ],
-                        buttonValues: const [
-                          "SELL",
-                          "ACCEPT_SELLING",
-                        ],
-                        radius: 12,
-                        shapeRadius: 12,
-                        selectedBorderColor: Colors.transparent,
-                        unSelectedBorderColor: Colors.transparent,
-                        buttonTextStyle: ButtonTextStyle(
-                          selectedColor: ColorTheme.whiteColor,
-                          unSelectedColor: ColorTheme.primaryColor,
-                          textStyle: const TextStyle(fontSize: 16),
-                        ),
-                        radioButtonValue: (value) {},
-                        selectedColor: ColorTheme.primaryColor,
-                      ),
-                      const SizedBox(
-                        height: 16,
-                      ),
+                      // CustomRadioButton(
+                      //   elevation: 0,
+                      //   padding: 4,
+                      //   unSelectedColor: ColorTheme.newBoxColor,
+                      //   buttonLables: const [
+                      //     'Sell',
+                      //     'Buy',
+                      //   ],
+                      //   buttonValues: const [
+                      //     "SELL",
+                      //     "ACCEPT_SELLING",
+                      //   ],
+                      //   radius: 12,
+                      //   shapeRadius: 12,
+                      //   selectedBorderColor: Colors.transparent,
+                      //   unSelectedBorderColor: Colors.transparent,
+                      //   buttonTextStyle: ButtonTextStyle(
+                      //     selectedColor: ColorTheme.whiteColor,
+                      //     unSelectedColor: ColorTheme.primaryColor,
+                      //     textStyle: const TextStyle(fontSize: 16),
+                      //   ),
+                      //   radioButtonValue: (value) {},
+                      //   selectedColor: ColorTheme.primaryColor,
+                      // ),
+                      // const SizedBox(
+                      //   height: 16,
+                      // ),
                       CustomTextField(
                         controller: controller.fieldPostTitle,
                         hintText: 'Title',
@@ -172,7 +174,10 @@ class CreatePostPage extends StatelessWidget {
                       CustomTextField(
                         controller: controller.fieldPostPrice,
                         hintText: 'Price',
-                        prefixIcon: const Icon(Icons.price_change_outlined),
+                        prefixIcon: Icon(
+                          Icons.price_change_outlined,
+                          color: ColorTheme.primaryColor,
+                        ),
                         filledColor: ColorTheme.newBoxColor,
                         labelColor: ColorTheme.primaryColor,
                         filledTextColor: ColorTheme.primaryColor,
@@ -185,13 +190,23 @@ class CreatePostPage extends StatelessWidget {
                         radius: 8,
                         padding: const EdgeInsets.all(12),
                         textStyle: StyleTheme.textTs
-                            .copyWith(color: ColorTheme.newFontHeaderColor),
-                        label: 'Upload Photo',
+                            .copyWith(color: ColorTheme.primaryColor),
+                        label: controller.isSelectImage
+                            ? 'Change Image'
+                            : 'Upload Photo',
                         color: ColorTheme.newBoxColor,
                         onPressed: () {
                           controller.tapUploadPhoto();
                         },
                       ),
+                      const SizedBox(
+                        height: 16,
+                      ),
+                      if (controller.isSelectImage)
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(12),
+                          child: Image.memory(controller.byteImage!),
+                        ),
                       const SizedBox(
                         height: 64,
                       )
