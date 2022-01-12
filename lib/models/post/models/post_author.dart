@@ -14,8 +14,8 @@ class PostAuthor {
   String? address;
   @JsonKey(name: 'created_at') String? createdAt;
   String? image;
-  int? latitude;
-  int? longitude;
+  double? latitude;
+  double? longitude;
   @JsonKey(name: 'updated_at') String? updatedAt;
   String? phone;
 

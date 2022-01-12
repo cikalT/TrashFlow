@@ -122,7 +122,10 @@ class HomeController extends BaseController {
   }
 
   tapPost(PostData? postData, int index, bool status) {
-    printDebugMode(index);
+    Get.toNamed(AppRoutes.detailPostPage,
+        arguments: ScreenArguments()
+          ..data = postData
+          ..state = status);
   }
   //end main call function
 
@@ -131,10 +134,6 @@ class HomeController extends BaseController {
     var result = await GetUserPostListApi().request();
     if (result.success ?? false) {
       postDataList = result.listData as List<PostData?>;
-
-      for (var element in postDataList) {
-        printDebugMode(element?.id);
-      }
     }
   }
   //end home section function

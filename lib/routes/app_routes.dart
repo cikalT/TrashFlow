@@ -7,4 +7,5 @@ abstract class AppRoutes {
   static const editProfilePage = '/home/profile/edit-profile';
   static const faqPage = '/home/profile/faq';
   static const createPostPage = '/home/add-post/create';
+  static const detailPostPage = '/home/add-post/detail';
 }
