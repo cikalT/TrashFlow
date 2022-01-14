@@ -13,7 +13,7 @@ class AddPostSection extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetBuilder<HomeController>(
       builder: (controller) => Container(
-        color: ColorTheme.newBoxColor,
+        color: ColorTheme.boxColor,
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
         child: Column(

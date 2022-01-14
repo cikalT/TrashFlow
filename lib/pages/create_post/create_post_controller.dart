@@ -80,7 +80,7 @@ class CreatePostController extends BaseController {
             textStyle:
                 StyleTheme.textTs.copyWith(color: ColorTheme.primaryColor),
             label: 'Camera',
-            color: ColorTheme.newBoxColor,
+            color: ColorTheme.boxColor,
             onPressed: () {
               Get.back(result: 'camera');
             },
@@ -94,7 +94,7 @@ class CreatePostController extends BaseController {
             textStyle:
                 StyleTheme.textTs.copyWith(color: ColorTheme.primaryColor),
             label: 'Gallery',
-            color: ColorTheme.newBoxColor,
+            color: ColorTheme.boxColor,
             onPressed: () {
               Get.back(result: 'gallery');
             },

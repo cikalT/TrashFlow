@@ -12,6 +12,9 @@ import 'package:trashflow/helpers/alert_helper.dart';
 import 'package:trashflow/models/index.dart';
 import 'package:trashflow/routes/app_pages.dart';
 import 'package:trashflow/themes/index.dart';
+import 'package:trashflow/widgets/confirmation_bottomsheet.dart';
+import 'package:trashflow/widgets/custom_raised_button.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class HomeController extends BaseController {
   bool isFromLogin = false;
@@ -271,6 +274,84 @@ class HomeController extends BaseController {
     }
   }
 
-  tapAbout() {}
+  tapAbout(BuildContext context) {
+    showBottomSheet(
+      context: context,
+      builder: (BuildContext context) {
+        return ConfirmationBottomSheet(
+          title: 'About This App',
+          desc:
+              'This application is developed by using Flutter Framework and ExpressJS for backend.\n\nThis application purpose is to allow people to easily recycle their trash and let them earn money from them. Our main goal is to promote recycling and also for a sustainable environment.\n\n\nMade with ♥ by students of STMIK Primakara',
+          confirmation: true,
+          customIya: 'OK',
+          onTapYes: () {
+            Get.back();
+          },
+          customNo: 'LEARN MORE',
+          onTapNo: () {
+            Get.back();
+            tapLearnMore();
+          },
+          customDecoration: BoxDecoration(
+            color: ColorTheme.boxColor,
+            borderRadius: BorderRadius.circular(12),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.blueGrey.withOpacity(0.13),
+                spreadRadius: 1.4,
+                blurRadius: 4.5,
+                blurStyle: BlurStyle.outer,
+                offset: Offset.fromDirection(2.0),
+              ),
+            ],
+          ),
+        );
+      },
+    );
+  }
+
+  tapLearnMore() {
+    AlertHelper.showBottomSheet(
+      Container(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            CustomRaisedButton(
+              radius: 8,
+              padding: const EdgeInsets.all(12),
+              textStyle:
+                  StyleTheme.textTs.copyWith(color: ColorTheme.primaryColor),
+              label: 'Flutter Project',
+              color: ColorTheme.boxColor,
+              onPressed: () async {
+                Get.back();
+                await launch('https://github.com/cikalT/TrashFlow');
+              },
+            ),
+            const SizedBox(
+              height: 8,
+            ),
+            CustomRaisedButton(
+              radius: 8,
+              padding: const EdgeInsets.all(12),
+              textStyle:
+                  StyleTheme.textTs.copyWith(color: ColorTheme.primaryColor),
+              label: 'Backend Api',
+              color: ColorTheme.boxColor,
+              onPressed: () async {
+                Get.back();
+                await launch('https://github.com/labasubagia22/trashflow_api');
+              },
+            ),
+            const SizedBox(
+              height: 8,
+            ),
+          ],
+        ),
+      ),
+      canHide: true,
+    );
+  }
   //end profile section function
 }

@@ -73,7 +73,7 @@ class PostItem extends StatelessWidget {
                               color: ColorTheme.primaryColor, fontSize: 16),
                         ),
                         Text(
-                          postData?.price.toString() ?? '',
+                          '\$ ${postData?.price.toString() ?? '0'}',
                           style: StyleTheme.textBoldTs.copyWith(
                               color: ColorTheme.primaryColor, fontSize: 14),
                         ),

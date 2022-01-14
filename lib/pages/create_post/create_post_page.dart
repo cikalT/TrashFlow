@@ -2,9 +2,7 @@ import 'package:trashflow/base/base_controller.dart';
 import 'package:trashflow/base/base_widget.dart';
 import 'package:trashflow/routes/index.dart';
 import 'package:trashflow/themes/index.dart';
-import 'package:trashflow/widgets/button_text_style.dart';
 import 'package:trashflow/widgets/custom_dropdown.dart';
-import 'package:trashflow/widgets/custom_radio_button.dart';
 import 'package:trashflow/widgets/custom_raised_button.dart';
 import 'package:trashflow/widgets/custom_text_field.dart';
 
@@ -75,37 +73,10 @@ class CreatePostPage extends StatelessWidget {
                       const SizedBox(
                         height: 8,
                       ),
-                      // CustomRadioButton(
-                      //   elevation: 0,
-                      //   padding: 4,
-                      //   unSelectedColor: ColorTheme.newBoxColor,
-                      //   buttonLables: const [
-                      //     'Sell',
-                      //     'Buy',
-                      //   ],
-                      //   buttonValues: const [
-                      //     "SELL",
-                      //     "ACCEPT_SELLING",
-                      //   ],
-                      //   radius: 12,
-                      //   shapeRadius: 12,
-                      //   selectedBorderColor: Colors.transparent,
-                      //   unSelectedBorderColor: Colors.transparent,
-                      //   buttonTextStyle: ButtonTextStyle(
-                      //     selectedColor: ColorTheme.whiteColor,
-                      //     unSelectedColor: ColorTheme.primaryColor,
-                      //     textStyle: const TextStyle(fontSize: 16),
-                      //   ),
-                      //   radioButtonValue: (value) {},
-                      //   selectedColor: ColorTheme.primaryColor,
-                      // ),
-                      // const SizedBox(
-                      //   height: 16,
-                      // ),
                       CustomTextField(
                         controller: controller.fieldPostTitle,
                         hintText: 'Title',
-                        filledColor: ColorTheme.newBoxColor,
+                        filledColor: ColorTheme.boxColor,
                         labelColor: ColorTheme.primaryColor,
                         filledTextColor: ColorTheme.primaryColor,
                         borderedMode: false,
@@ -132,12 +103,12 @@ class CreatePostPage extends StatelessWidget {
                             height: 48,
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             width: double.infinity,
-                            backgroundColor: ColorTheme.newBoxColor,
+                            backgroundColor: ColorTheme.boxColor,
                           ),
                           dropdownStyle: DropdownStyle(
                             borderRadius: BorderRadius.circular(8),
                             padding: const EdgeInsets.all(5),
-                            color: ColorTheme.newBoxColor,
+                            color: ColorTheme.boxColor,
                           ),
                           items: controller.postCategoryList
                               .asMap()
@@ -163,7 +134,7 @@ class CreatePostPage extends StatelessWidget {
                       CustomTextField(
                         controller: controller.fieldPostDescription,
                         hintText: 'Description',
-                        filledColor: ColorTheme.newBoxColor,
+                        filledColor: ColorTheme.boxColor,
                         labelColor: ColorTheme.primaryColor,
                         filledTextColor: ColorTheme.primaryColor,
                         borderedMode: false,
@@ -178,7 +149,7 @@ class CreatePostPage extends StatelessWidget {
                           Icons.price_change_outlined,
                           color: ColorTheme.primaryColor,
                         ),
-                        filledColor: ColorTheme.newBoxColor,
+                        filledColor: ColorTheme.boxColor,
                         labelColor: ColorTheme.primaryColor,
                         filledTextColor: ColorTheme.primaryColor,
                         borderedMode: false,
@@ -194,7 +165,7 @@ class CreatePostPage extends StatelessWidget {
                         label: controller.isSelectImage
                             ? 'Change Image'
                             : 'Upload Photo',
-                        color: ColorTheme.newBoxColor,
+                        color: ColorTheme.boxColor,
                         onPressed: () {
                           controller.tapUploadPhoto();
                         },

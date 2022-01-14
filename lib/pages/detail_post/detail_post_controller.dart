@@ -20,7 +20,7 @@ class DetailPostController extends BaseController {
 
   PostData? postData;
   bool isAuthor = false;
-  String titlePage = '...';
+  String titlePage = '';
   String buttonPage = '...';
 
   @override
@@ -39,8 +39,8 @@ class DetailPostController extends BaseController {
         buttonPage = 'Update Post';
         titlePage = 'Update Post';
       } else {
-        buttonPage = 'Message Owner';
-        titlePage = postData?.title ?? '';
+        buttonPage = 'Chat Now';
+        titlePage = '';
       }
     }
     await getPostCategory();

@@ -26,27 +26,29 @@ class DetailPostPage extends StatelessWidget {
         bottomNavigationBar: Transform.translate(
           offset: Offset(0.0, -1 * MediaQuery.of(context).viewInsets.bottom),
           child: Container(
+            color: ColorTheme.primaryColor,
             padding: const EdgeInsets.all(16),
             child: CustomRaisedButton(
               loading: controller.isButtonLoading,
               radius: 16,
               padding: const EdgeInsets.all(12),
               textStyle: StyleTheme.textBoldTs
-                  .copyWith(color: ColorTheme.whiteColor, fontSize: 16),
+                  .copyWith(color: ColorTheme.primaryColor, fontSize: 16),
               label: controller.buttonPage,
-              color: ColorTheme.primaryColor,
+              color: ColorTheme.whiteColor,
               onPressed: () {
                 controller.tapButtonPost();
               },
             ),
           ),
         ),
-        child: Container(
-          padding: const EdgeInsets.all(16),
-          child: SingleChildScrollView(
-            child: Column(
-              children: [
-                AppBar(
+        child: SingleChildScrollView(
+          physics: NeverScrollableScrollPhysics(),
+          child: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(16),
+                child: AppBar(
                   elevation: 0,
                   centerTitle: true,
                   backgroundColor: ColorTheme.whiteColor,
@@ -76,19 +78,20 @@ class DetailPostPage extends StatelessWidget {
                       )
                   ],
                 ),
-                const SizedBox(
-                  height: 16,
-                ),
+              ),
+              const SizedBox(
+                height: 16,
+              ),
+              if (!controller.isLoading)
                 SingleChildScrollView(
                   child: controller.isAuthor
                       ? const AuthorSection()
                       : const GuestSection(),
                 ),
-                const SizedBox(
-                  height: 16,
-                ),
-              ],
-            ),
+              const SizedBox(
+                height: 16,
+              ),
+            ],
           ),
         ),
       ),

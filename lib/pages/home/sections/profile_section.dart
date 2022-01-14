@@ -14,7 +14,7 @@ class ProfileSection extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetBuilder<HomeController>(
       builder: (controller) => Container(
-        color: ColorTheme.newBoxColor,
+        color: ColorTheme.boxColor,
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
         child: Column(
@@ -125,7 +125,7 @@ class ProfileSection extends StatelessWidget {
                       padding: const EdgeInsets.all(16),
                       alignment: Alignment.center,
                       decoration: BoxDecoration(
-                        color: ColorTheme.newBoxColor,
+                        color: ColorTheme.boxColor,
                         borderRadius: BorderRadius.circular(24),
                       ),
                       child: Row(
@@ -151,14 +151,14 @@ class ProfileSection extends StatelessWidget {
                   ),
                   InkWell(
                     onTap: () {
-                      controller.tapAbout();
+                      controller.tapAbout(context);
                     },
                     splashColor: ColorTheme.primaryColor,
                     child: Container(
                       padding: const EdgeInsets.all(12),
                       alignment: Alignment.center,
                       decoration: BoxDecoration(
-                        color: ColorTheme.newBoxColor,
+                        color: ColorTheme.boxColor,
                         borderRadius: BorderRadius.circular(24),
                       ),
                       child: Row(

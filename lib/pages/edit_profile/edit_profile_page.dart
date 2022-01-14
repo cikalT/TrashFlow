@@ -71,7 +71,7 @@ class EditProfilePage extends StatelessWidget {
                   textStyle: StyleTheme.textTs
                       .copyWith(color: ColorTheme.primaryColor, fontSize: 16),
                   label: controller.countryLabel,
-                  color: ColorTheme.newBoxColor,
+                  color: ColorTheme.boxColor,
                   onPressed: () {
                     controller.tapCountry(context);
                   },
@@ -82,7 +82,7 @@ class EditProfilePage extends StatelessWidget {
                 child: CustomTextField(
                   controller: controller.fieldWhatsappNumber,
                   hintText: 'WhatsappNumber',
-                  filledColor: ColorTheme.newBoxColor,
+                  filledColor: ColorTheme.boxColor,
                   isRequiredType: controller.isEmptyFieldWhatsapp,
                   errorText: 'REQUIRED',
                   labelColor: ColorTheme.primaryColor,
@@ -98,7 +98,7 @@ class EditProfilePage extends StatelessWidget {
                 child: CustomTextField(
                   controller: controller.fieldAddress,
                   hintText: 'Address',
-                  filledColor: ColorTheme.newBoxColor,
+                  filledColor: ColorTheme.boxColor,
                   isRequiredType: controller.isEmptyFieldAddress,
                   errorText: 'REQUIRED',
                   labelColor: ColorTheme.primaryColor,

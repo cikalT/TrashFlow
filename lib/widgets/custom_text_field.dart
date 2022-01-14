@@ -97,8 +97,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
               ? Text(
                   '${widget.label}',
                   style: StyleTheme.textSmallTs.copyWith(
-                      color: widget.labelColor ??
-                          ColorTheme.newSmallHeaderFontColor),
+                      color: widget.labelColor ?? ColorTheme.headerFontColor),
                 )
               : Container(),
         if (widget.isRequiredType)
@@ -106,8 +105,8 @@ class _CustomTextFieldState extends State<CustomTextField> {
               ? Row(children: [
                   Text('${widget.label}',
                       style: StyleTheme.textSmallTs.copyWith(
-                          color: widget.labelColor ??
-                              ColorTheme.newSmallHeaderFontColor)),
+                          color:
+                              widget.labelColor ?? ColorTheme.headerFontColor)),
                   Text('*',
                       style:
                           StyleTheme.textSmallTs.copyWith(color: Colors.red)),
@@ -159,7 +158,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
                                       ? Colors.red
                                       : widget.searchMode
                                           ? HexColor('D9DBE9').withOpacity(.4)
-                                          : ColorTheme.newSeparatorColor,
+                                          : ColorTheme.lightGreyColor,
                               width: 1.0),
                           borderRadius: BorderRadius.all(
                             Radius.circular(widget.radius),
@@ -221,7 +220,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
                                           : widget.searchMode
                                               ? HexColor('D9DBE9')
                                                   .withOpacity(.4)
-                                              : ColorTheme.newLightGreyColor,
+                                              : ColorTheme.lightGreyColor,
                               width: 1.0),
                           borderRadius: BorderRadius.all(
                             Radius.circular(widget.radius),
