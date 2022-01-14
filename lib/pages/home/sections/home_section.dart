@@ -1,10 +1,6 @@
-import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:trashflow/base/base_controller.dart';
-import 'package:trashflow/base/base_widget.dart';
 import 'package:trashflow/themes/index.dart';
-import 'package:trashflow/widgets/custom_raised_button.dart';
 import 'package:trashflow/widgets/post_item.dart';
 
 import '../home_controller.dart';

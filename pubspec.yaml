@@ -57,6 +57,8 @@ dependencies:
   launch_review: ^3.0.1
   photo_view: ^0.13.0
   multi_image_picker: ^4.8.1
+  url_launcher: ^6.0.18
+  country_picker: ^2.0.9
   flutter_absolute_path:
     git:
       url: https://github.com/idabgsram/flutter_absolute_path.git

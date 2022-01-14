@@ -4,11 +4,13 @@ import 'package:trashflow/apis/auth/insert_profile_api.dart';
 import 'package:trashflow/base/base_controller.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:trashflow/configs/shared_pref_config.dart';
+import 'package:trashflow/helpers/alert_helper.dart';
 import 'package:trashflow/models/index.dart';
 import 'package:trashflow/routes/app_pages.dart';
 
 class AuthController extends BaseController {
   User? googleAuthUser;
+  GoogleSignIn googleSignIn = GoogleSignIn();
   final FirebaseAuth auth = FirebaseAuth.instance;
 
   ProfileData? profileData;
@@ -31,12 +33,6 @@ class AuthController extends BaseController {
   listData({int? pageTo}) async {
     // isLoading = true;
     // update();
-  }
-
-  @override
-  void onClose() {
-    //code here
-    super.onClose();
   }
 
   tapContinueGoogle() async {
@@ -68,7 +64,8 @@ class AuthController extends BaseController {
       update();
       setUserLogin(googleAuthUser);
     } else {
-      printDebugMode('fail');
+      await profileLogOut();
+      AlertHelper.showAlertTrigger('Failed to login');
     }
   }
 
@@ -81,5 +78,12 @@ class AuthController extends BaseController {
     SharedPrefConfig.setUserData(user);
     Get.offAllNamed(AppRoutes.homePage,
         arguments: ScreenArguments()..state = true);
+  }
+
+  profileLogOut() async {
+    bool isDestroy = await SharedPrefConfig.removeSession();
+    if (isDestroy) {
+      googleSignIn.disconnect();
+    }
   }
 }

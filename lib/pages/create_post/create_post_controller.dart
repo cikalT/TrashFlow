@@ -55,7 +55,9 @@ class CreatePostController extends BaseController {
 
   @override
   void onClose() {
-    //code here
+    fieldPostTitle.clear();
+    fieldPostDescription.clear();
+    fieldPostPrice.clear();
     super.onClose();
   }
 

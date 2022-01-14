@@ -5,6 +5,7 @@ import 'package:trashflow/apis/post/update_post_api.dart';
 import 'package:trashflow/base/base_controller.dart';
 import 'package:trashflow/helpers/alert_helper.dart';
 import 'package:trashflow/models/index.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class DetailPostController extends BaseController {
   bool isButtonLoading = false;
@@ -57,7 +58,9 @@ class DetailPostController extends BaseController {
 
   @override
   void onClose() {
-    //code here
+    fieldPostTitle.clear();
+    fieldPostDescription.clear();
+    fieldPostPrice.clear();
     super.onClose();
   }
 
@@ -124,5 +127,19 @@ class DetailPostController extends BaseController {
     update();
   }
 
-  tapMessageOwner() {}
+  tapMessageOwner() async {
+    String number = postData?.author?.phone ?? '';
+    String status = '';
+    String message = '';
+    if (postData?.type == 'SELL') {
+      status = 'buy';
+      message =
+          'Hello, I am interesting to $status your *${postData?.title}* that you post on TrashFlow. Can I know where we can meet up? Thank you!';
+    } else {
+      status = 'sell';
+      message =
+          'Hello, I am interesting to $status you some *${postData?.categories?.first?.name}* that you post on TrashFlow. Can I know where we can meet up? Thank you!';
+    }
+    await launch('https://wa.me/$number?text=$message');
+  }
 }

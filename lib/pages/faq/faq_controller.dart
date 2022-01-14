@@ -26,12 +26,6 @@ class FaqController extends BaseController {
     // update();
   }
 
-  @override
-  void onClose() {
-    //code here
-    super.onClose();
-  }
-
   getFaqList() async {
     var result = await GetFaqListLocalApi().request();
     if (result.success ?? false) {

@@ -94,7 +94,7 @@ class HomeController extends BaseController {
 
   @override
   void onClose() {
-    //code here
+    printInfo(info: 'Closing Services');
     super.onClose();
   }
 

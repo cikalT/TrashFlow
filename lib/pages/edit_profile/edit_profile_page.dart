@@ -61,7 +61,21 @@ class EditProfilePage extends StatelessWidget {
                 ),
               ),
               const SizedBox(
-                height: 64,
+                height: 16,
+              ),
+              Container(
+                padding: const EdgeInsets.all(16),
+                child: CustomRaisedButton(
+                  radius: 8,
+                  padding: const EdgeInsets.all(12),
+                  textStyle: StyleTheme.textTs
+                      .copyWith(color: ColorTheme.primaryColor, fontSize: 16),
+                  label: controller.countryLabel,
+                  color: ColorTheme.newBoxColor,
+                  onPressed: () {
+                    controller.tapCountry(context);
+                  },
+                ),
               ),
               Container(
                 padding: const EdgeInsets.symmetric(horizontal: 16),
