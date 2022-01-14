@@ -1,7 +1,6 @@
 import 'package:get/get.dart';
 import 'package:trashflow/base/base_controller.dart';
 import 'package:trashflow/themes/index.dart';
-import 'package:trashflow/themes/style_theme.dart';
 import 'package:trashflow/widgets/custom_raised_button.dart';
 
 class ConfirmationBottomSheet extends StatelessWidget {
