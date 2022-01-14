@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/widgets.dart';
 import 'package:trashflow/base/base_controller.dart';
 import 'package:trashflow/models/index.dart';
@@ -27,14 +28,22 @@ class PostItem extends StatelessWidget {
         child: CustomContainer(
           child: Stack(
             children: [
-              // Container(
-              //   alignment: Alignment.topRight,
-              //   child: Text(
-              //     postData?.type ?? '',
-              //     style: StyleTheme.textBoldTs
-              //         .copyWith(color: ColorTheme.primaryColor, fontSize: 16),
-              //   ),
-              // ),
+              if (isAuthor)
+                Container(
+                  padding: const EdgeInsets.all(8),
+                  alignment: Alignment.topRight,
+                  child: postData!.type == 'SELL'
+                      ? Icon(
+                          CupertinoIcons.money_dollar,
+                          color: ColorTheme.primaryColor,
+                        )
+                      : postData!.type == 'BUY'
+                          ? Icon(
+                              CupertinoIcons.cart_fill,
+                              color: ColorTheme.primaryColor,
+                            )
+                          : Container(),
+                ),
               Row(
                 mainAxisSize: MainAxisSize.max,
                 children: [

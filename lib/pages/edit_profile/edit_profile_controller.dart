@@ -64,7 +64,8 @@ class EditProfileController extends BaseController {
     super.onClose();
   }
 
-  tapSave() async {
+  tapUpdate() async {
+    FocusManager.instance.primaryFocus?.unfocus();
     isLoading = true;
     update();
     String name = profileGoogle?.displayName ?? '';

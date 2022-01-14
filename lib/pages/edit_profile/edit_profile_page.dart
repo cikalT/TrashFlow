@@ -34,7 +34,7 @@ class EditProfilePage extends StatelessWidget {
               label: 'Update Profile & Location',
               color: ColorTheme.primaryColor,
               onPressed: () {
-                controller.tapSave();
+                controller.tapUpdate();
               },
             ),
           ),

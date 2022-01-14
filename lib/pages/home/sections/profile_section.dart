@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:trashflow/base/base_controller.dart';
@@ -146,7 +147,43 @@ class ProfileSection extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(
-                    height: 160,
+                    height: 24,
+                  ),
+                  InkWell(
+                    onTap: () {
+                      controller.tapAbout();
+                    },
+                    splashColor: ColorTheme.primaryColor,
+                    child: Container(
+                      padding: const EdgeInsets.all(12),
+                      alignment: Alignment.center,
+                      decoration: BoxDecoration(
+                        color: ColorTheme.newBoxColor,
+                        borderRadius: BorderRadius.circular(24),
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(
+                            CupertinoIcons.info,
+                            color: ColorTheme.primaryColor,
+                          ),
+                          const SizedBox(
+                            width: 8,
+                          ),
+                          Text(
+                            'About This App',
+                            style: StyleTheme.textTs.copyWith(
+                                color: ColorTheme.primaryColor,
+                                fontSize: 16,
+                                fontWeight: FontWeight.w500),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 80,
                   ),
                   CustomRaisedButton(
                     radius: 16,

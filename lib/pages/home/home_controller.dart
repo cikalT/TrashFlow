@@ -8,6 +8,7 @@ import 'package:trashflow/apis/post/get_user_post_list_api.dart';
 import 'package:trashflow/base/base_controller.dart';
 import 'package:motion_toast/motion_toast.dart';
 import 'package:trashflow/configs/shared_pref_config.dart';
+import 'package:trashflow/helpers/alert_helper.dart';
 import 'package:trashflow/models/index.dart';
 import 'package:trashflow/routes/app_pages.dart';
 import 'package:trashflow/themes/index.dart';
@@ -108,7 +109,7 @@ class HomeController extends BaseController {
     isLoading = true;
     update();
     if (index == 0) {
-      await getPostList();
+      await getMyPostList();
       isLoading = false;
       update();
     } else if (index == 1) {
@@ -159,11 +160,14 @@ class HomeController extends BaseController {
               width: 300)
           .show(Get.context!);
     }
+    if (result == 'error') {
+      AlertHelper.showAlertTrigger('Something went wrong, try again');
+    }
   }
   //end main call function
 
   //start home section function
-  getPostList() async {
+  getMyPostList() async {
     postDataList.clear();
     var result = await GetUserPostListApi().request();
     if (result.success ?? false) {
@@ -171,6 +175,7 @@ class HomeController extends BaseController {
       myPostDataList = postDataList
           .where((element) => element?.author?.email == profileGoogle?.email)
           .toList();
+      myPostDataList.sort((b, a) => a!.createdAt!.compareTo(b!.createdAt!));
     }
   }
   //end home section function
@@ -186,6 +191,8 @@ class HomeController extends BaseController {
               element?.type == 'BUY' &&
               element?.author?.email != profileGoogle?.email)
           .toList();
+      peopleBuyPostDataList
+          .sort((b, a) => a!.createdAt!.compareTo(b!.createdAt!));
     }
   }
   //end sell section function
@@ -217,6 +224,8 @@ class HomeController extends BaseController {
               element?.type == 'SELL' &&
               element?.author?.email != profileGoogle?.email)
           .toList();
+      peopleSellPostDataList
+          .sort((b, a) => a!.createdAt!.compareTo(b!.createdAt!));
     }
   }
   //end buy section function
@@ -261,5 +270,7 @@ class HomeController extends BaseController {
       });
     }
   }
+
+  tapAbout() {}
   //end profile section function
 }

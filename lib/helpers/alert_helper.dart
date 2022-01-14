@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:motion_toast/motion_toast.dart';
+import 'package:trashflow/themes/index.dart';
 import 'package:trashflow/widgets/confirmation_bottomsheet.dart';
 
 enum AlertType { snackBar, dialog }
@@ -64,5 +66,15 @@ class AlertHelper {
         canHide: canHide,
       );
     }
+  }
+
+  static void showAlertTrigger(String? message) {
+    MotionToast.error(
+            title: 'Error',
+            titleStyle: StyleTheme.headerTs.copyWith(),
+            description: message ?? 'Error Trigger',
+            descriptionStyle: StyleTheme.textTs.copyWith(),
+            width: 300)
+        .show(Get.context!);
   }
 }

@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 import 'package:trashflow/base/base_controller.dart';
 import 'package:trashflow/base/base_widget.dart';
@@ -33,27 +34,27 @@ class HomePage extends StatelessWidget {
           },
           items: [
             SalomonBottomBarItem(
-              icon: const Icon(Icons.home),
+              icon: const Icon(CupertinoIcons.home),
               title: const Text('Home'),
               selectedColor: ColorTheme.primaryColor,
             ),
             SalomonBottomBarItem(
-              icon: const Icon(Icons.attach_money),
+              icon: const Icon(CupertinoIcons.money_dollar_circle),
               title: const Text('Sell'),
               selectedColor: ColorTheme.primaryColor,
             ),
             SalomonBottomBarItem(
-              icon: const Icon(Icons.add_circle),
+              icon: const Icon(CupertinoIcons.add_circled_solid),
               title: const Text('Create'),
               selectedColor: ColorTheme.primaryColor,
             ),
             SalomonBottomBarItem(
-              icon: const Icon(Icons.shopping_basket),
+              icon: const Icon(CupertinoIcons.cart),
               title: const Text('Buy'),
               selectedColor: ColorTheme.primaryColor,
             ),
             SalomonBottomBarItem(
-              icon: const Icon(Icons.person),
+              icon: const Icon(CupertinoIcons.person),
               title: const Text('Profile'),
               selectedColor: ColorTheme.primaryColor,
             ),

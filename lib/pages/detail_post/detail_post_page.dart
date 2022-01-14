@@ -35,10 +35,10 @@ class DetailPostPage extends StatelessWidget {
               padding: const EdgeInsets.all(12),
               textStyle: StyleTheme.textBoldTs
                   .copyWith(color: ColorTheme.whiteColor, fontSize: 16),
-              label: 'Update Post',
+              label: controller.buttonPage,
               color: ColorTheme.primaryColor,
               onPressed: () {
-                controller.tapUpdatePost();
+                controller.tapButtonPost();
               },
             ),
           ),
@@ -53,7 +53,7 @@ class DetailPostPage extends StatelessWidget {
                   centerTitle: true,
                   backgroundColor: ColorTheme.whiteColor,
                   title: Text(
-                    'Update Post',
+                    controller.titlePage,
                     style: StyleTheme.textBoldTs
                         .copyWith(color: ColorTheme.primaryColor, fontSize: 16),
                   ),
@@ -66,15 +66,16 @@ class DetailPostPage extends StatelessWidget {
                     ),
                   ),
                   actions: [
-                    IconButton(
-                      icon: Icon(
-                        Icons.delete,
-                        color: ColorTheme.primaryColor,
-                      ),
-                      onPressed: () {
-                        controller.tapDeletePost();
-                      },
-                    )
+                    if (controller.isAuthor)
+                      IconButton(
+                        icon: Icon(
+                          Icons.delete,
+                          color: ColorTheme.primaryColor,
+                        ),
+                        onPressed: () {
+                          controller.tapDeletePost();
+                        },
+                      )
                   ],
                 ),
                 const SizedBox(
