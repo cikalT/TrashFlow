@@ -61,7 +61,7 @@ class AddPostSection extends StatelessWidget {
                           padding: const EdgeInsets.all(12),
                           textStyle: StyleTheme.textBoldTs.copyWith(
                               color: ColorTheme.whiteColor, fontSize: 16),
-                          label: 'Buy',
+                          label: 'Look for Trash',
                           color: ColorTheme.primaryColor,
                           onPressed: () {
                             controller.tapCreatePost('buy');
@@ -80,7 +80,7 @@ class AddPostSection extends StatelessWidget {
                           padding: const EdgeInsets.all(12),
                           textStyle: StyleTheme.textBoldTs.copyWith(
                               color: ColorTheme.whiteColor, fontSize: 16),
-                          label: 'Sell',
+                          label: 'Sell some Trash',
                           color: ColorTheme.primaryColor,
                           onPressed: () {
                             controller.tapCreatePost('sell');

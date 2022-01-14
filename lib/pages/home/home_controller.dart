@@ -2,6 +2,8 @@ import 'dart:async';
 import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:location/location.dart';
+import 'package:trashflow/apis/post/get_people_buy_post_list_api.dart';
+import 'package:trashflow/apis/post/get_people_sell_post_list_api.dart';
 import 'package:trashflow/apis/post/get_user_post_list_api.dart';
 import 'package:trashflow/base/base_controller.dart';
 import 'package:motion_toast/motion_toast.dart';
@@ -25,8 +27,17 @@ class HomeController extends BaseController {
   PermissionStatus? permissionGranted;
   LocationData? locationData;
 
-  //home
+  //main
   List<PostData?> postDataList = [];
+
+  //home
+  List<PostData?> myPostDataList = [];
+
+  //sell
+  List<PostData?> peopleBuyPostDataList = [];
+
+  //buy
+  List<PostData?> peopleSellPostDataList = [];
 
   @override
   void onInit() async {
@@ -46,7 +57,7 @@ class HomeController extends BaseController {
     update();
     if (isFromLogin) {
       MotionToast.success(
-              title: 'Welcome Back!',
+              title: 'Welcome!',
               titleStyle: StyleTheme.headerTs.copyWith(),
               description: 'Lets start conserve the environment',
               descriptionStyle: StyleTheme.textTs.copyWith(),
@@ -101,12 +112,14 @@ class HomeController extends BaseController {
       isLoading = false;
       update();
     } else if (index == 1) {
+      await getPeopleBuyPostList();
       isLoading = false;
       update();
     } else if (index == 2) {
       isLoading = false;
       update();
     } else if (index == 3) {
+      await getPeopleSellPostList();
       isLoading = false;
       update();
     } else if (index == 4) {
@@ -121,24 +134,60 @@ class HomeController extends BaseController {
     profileData = await getUserProfile(profileGoogle);
   }
 
-  tapPost(PostData? postData, int index, bool status) {
-    Get.toNamed(AppRoutes.detailPostPage,
+  tapPost(PostData? postData, int index, bool isAuthor) async {
+    var result = await Get.toNamed(AppRoutes.detailPostPage,
         arguments: ScreenArguments()
           ..data = postData
-          ..state = status);
+          ..state = isAuthor);
+    if (result == 'update') {
+      loadMenuData(index);
+      MotionToast.success(
+              title: 'Item Updated',
+              titleStyle: StyleTheme.headerTs.copyWith(),
+              description: 'Success update post',
+              descriptionStyle: StyleTheme.textTs.copyWith(),
+              width: 300)
+          .show(Get.context!);
+    }
+    if (result == 'delete') {
+      loadMenuData(index);
+      MotionToast.success(
+              title: 'Item Deleted',
+              titleStyle: StyleTheme.headerTs.copyWith(),
+              description: 'Success delete post',
+              descriptionStyle: StyleTheme.textTs.copyWith(),
+              width: 300)
+          .show(Get.context!);
+    }
   }
   //end main call function
 
   //start home section function
   getPostList() async {
+    postDataList.clear();
     var result = await GetUserPostListApi().request();
     if (result.success ?? false) {
       postDataList = result.listData as List<PostData?>;
+      myPostDataList = postDataList
+          .where((element) => element?.author?.email == profileGoogle?.email)
+          .toList();
     }
   }
   //end home section function
 
   //start sell section function
+  getPeopleBuyPostList() async {
+    postDataList.clear();
+    var result = await GetPeopleBuyPostListApi().request();
+    if (result.success ?? false) {
+      postDataList = result.listData as List<PostData?>;
+      peopleBuyPostDataList = postDataList
+          .where((element) =>
+              element?.type == 'BUY' &&
+              element?.author?.email != profileGoogle?.email)
+          .toList();
+    }
+  }
   //end sell section function
 
   //start add post section function
@@ -158,6 +207,18 @@ class HomeController extends BaseController {
   //end add post section function
 
   //start buy section function
+  getPeopleSellPostList() async {
+    postDataList.clear();
+    var result = await GetPeopleSellPostListApi().request();
+    if (result.success ?? false) {
+      postDataList = result.listData as List<PostData?>;
+      peopleSellPostDataList = postDataList
+          .where((element) =>
+              element?.type == 'SELL' &&
+              element?.author?.email != profileGoogle?.email)
+          .toList();
+    }
+  }
   //end buy section function
 
   //start profile section function

@@ -1,7 +1,6 @@
 import 'dart:io';
 import 'package:trashflow/apis/api.dart';
 import 'package:trashflow/configs/app_config.dart';
-import 'package:trashflow/configs/shared_pref_config.dart';
 import 'package:trashflow/models/index.dart';
 import 'package:http/http.dart' as http;
 
@@ -19,6 +18,8 @@ class CreatePostApi extends Api {
     try {
       headers['Content-Type'] = 'multipart/form-data';
       await generateHeader();
+      printDebugMode(url);
+      printDebugMode(payload);
       var request = http.MultipartRequest('POST', Uri.parse(url));
       request.headers.addAll(headers);
 

@@ -53,12 +53,13 @@ class HomeSection extends StatelessWidget {
                   children: [
                     Column(
                       children: List.generate(
-                        controller.postDataList.length,
+                        controller.myPostDataList.length,
                         (index) => PostItem(
-                          postData: controller.postDataList[index],
+                          postData: controller.myPostDataList[index],
                           index: index,
                           onTap: () => controller.tapPost(
-                              controller.postDataList[index], index, true),
+                              controller.myPostDataList[index], index, true),
+                          isAuthor: true,
                         ),
                       ),
                     ),

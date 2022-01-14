@@ -39,9 +39,9 @@ class CustomRaisedButton extends StatelessWidget {
       padding: padding,
       elevation: 0, //elevation,
       onPressed: loading ? null : onPressed,
-      color: color ?? ColorTheme.newButtonColor,
+      color: color ?? ColorTheme.primaryColor,
       disabledColor:
-          customDisabledColor ?? ColorTheme.newButtonColor.withOpacity(.3),
+          customDisabledColor ?? ColorTheme.primaryColor.withOpacity(.3),
       child: loading
           ? Row(
               mainAxisAlignment: MainAxisAlignment.center,

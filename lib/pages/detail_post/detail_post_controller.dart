@@ -1,9 +1,13 @@
+import 'package:get/get.dart';
 import 'package:trashflow/apis/local/get_faq_list_api.dart';
+import 'package:trashflow/apis/post/delete_post_api.dart';
 import 'package:trashflow/apis/post/get_category_list_api.dart';
+import 'package:trashflow/apis/post/update_post_api.dart';
 import 'package:trashflow/base/base_controller.dart';
 import 'package:trashflow/models/index.dart';
 
 class DetailPostController extends BaseController {
+  bool isButtonLoading = false;
   TextEditingController fieldPostTitle = TextEditingController();
   TextEditingController fieldPostDescription = TextEditingController();
   TextEditingController fieldPostPrice = TextEditingController();
@@ -64,7 +68,36 @@ class DetailPostController extends BaseController {
     fieldPostPrice.text = postData?.price.toString() ?? '';
   }
 
-  tapUpdatePost() {}
+  tapUpdatePost() async {
+    isButtonLoading = true;
+    isLoading = true;
+    update();
+    var result = await UpdatePostApi().request(
+        postId: postData?.id ?? '',
+        title: fieldPostTitle.text,
+        description: fieldPostDescription.text,
+        price: int.parse(fieldPostPrice.text),
+        type: postType.toUpperCase(),
+        categories: categoryId);
 
-  tapDeletePost() {}
+    if (result.success ?? false) {
+      Get.back(result: 'update');
+    }
+    isButtonLoading = false;
+    isLoading = false;
+    update();
+  }
+
+  tapDeletePost() async {
+    isButtonLoading = true;
+    isLoading = true;
+    update();
+    var result = await DeletePostApi().request(postId: postData?.id ?? '');
+    if (result.success ?? false) {
+      Get.back(result: 'delete');
+    }
+    isButtonLoading = false;
+    isLoading = false;
+    update();
+  }
 }

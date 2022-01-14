@@ -3,13 +3,12 @@ import 'package:trashflow/apis/api.dart';
 import 'package:trashflow/configs/app_config.dart';
 import 'package:trashflow/models/index.dart';
 
-class GetPostListApi extends Api {
+class GetPeopleSellPostListApi extends Api {
   String url = AppConfig.getApiUrl + '/post';
 
-  Future<ResultApi> request(
-    String type,
-  ) async {
+  Future<ResultApi> request() async {
     try {
+      payload = {"type": "SELL"};
       await generateHeader();
       printDebugMode(url);
       printDebugMode(payload);
@@ -27,6 +26,7 @@ class GetPostListApi extends Api {
         resultApi.listData = data.data;
       }
     } catch (e) {
+      printDebugMode('error ya mas');
       printError(e);
     }
     return resultApi;

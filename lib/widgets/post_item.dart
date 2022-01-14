@@ -7,10 +7,16 @@ import 'package:trashflow/widgets/custom_container.dart';
 
 class PostItem extends StatelessWidget {
   final PostData? postData;
-  final int? index;
-  final Function()? onTap;
+  final int index;
+  final Function() onTap;
+  final bool isAuthor;
 
-  const PostItem({Key? key, this.postData, this.index, this.onTap})
+  const PostItem(
+      {Key? key,
+      required this.postData,
+      required this.index,
+      required this.onTap,
+      required this.isAuthor})
       : super(key: key);
   @override
   Widget build(BuildContext context) {
@@ -21,14 +27,14 @@ class PostItem extends StatelessWidget {
         child: CustomContainer(
           child: Stack(
             children: [
-              Container(
-                alignment: Alignment.topRight,
-                child: Text(
-                  postData?.type ?? '',
-                  style: StyleTheme.textBoldTs
-                      .copyWith(color: ColorTheme.primaryColor, fontSize: 16),
-                ),
-              ),
+              // Container(
+              //   alignment: Alignment.topRight,
+              //   child: Text(
+              //     postData?.type ?? '',
+              //     style: StyleTheme.textBoldTs
+              //         .copyWith(color: ColorTheme.primaryColor, fontSize: 16),
+              //   ),
+              // ),
               Row(
                 mainAxisSize: MainAxisSize.max,
                 children: [
@@ -84,7 +90,7 @@ class PostItem extends StatelessWidget {
                                   .copyWith(color: ColorTheme.primaryColor),
                             ),
                             Text(
-                              'Me',
+                              isAuthor ? 'Me' : postData?.author?.name ?? 'Me',
                               style: StyleTheme.textTs
                                   .copyWith(color: ColorTheme.primaryColor),
                             ),

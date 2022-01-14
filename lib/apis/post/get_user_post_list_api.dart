@@ -7,9 +7,10 @@ class GetUserPostListApi extends Api {
   String url = AppConfig.getApiUrl + '/post/mine';
 
   Future<ResultApi> request() async {
-    printDebugMode(payload);
     try {
       await generateHeader();
+      printDebugMode(url);
+      printDebugMode(payload);
       var response = await get(
         Uri.parse(url),
         headers: headers,

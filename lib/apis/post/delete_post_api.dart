@@ -3,28 +3,25 @@ import 'package:trashflow/apis/api.dart';
 import 'package:trashflow/configs/app_config.dart';
 import 'package:trashflow/models/index.dart';
 
-class GetPostListApi extends Api {
+class DeletePostApi extends Api {
   String url = AppConfig.getApiUrl + '/post';
 
-  Future<ResultApi> request(
-    String type,
-  ) async {
+  Future<ResultApi> request({
+    required String postId,
+  }) async {
+    url += '/$postId';
     try {
       await generateHeader();
       printDebugMode(url);
-      printDebugMode(payload);
-      var response = await get(
-        Uri.parse(url),
-        headers: headers,
-      );
+      var response = await delete(Uri.parse(url), headers: headers);
 
       if (checkStatus200(response)) {
         var responseBody = json.decode(response.body);
-        var data = GetPostListResponse.fromJson(responseBody);
+        var data = CreatePostResponse.fromJson(responseBody);
         printDebugMode(responseBody);
         resultApi.success = true;
         resultApi.message = data.message;
-        resultApi.listData = data.data;
+        // resultApi.data = data.data;
       }
     } catch (e) {
       printError(e);

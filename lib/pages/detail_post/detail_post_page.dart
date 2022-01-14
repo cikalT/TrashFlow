@@ -30,6 +30,7 @@ class DetailPostPage extends StatelessWidget {
           child: Container(
             padding: const EdgeInsets.all(16),
             child: CustomRaisedButton(
+              loading: controller.isButtonLoading,
               radius: 16,
               padding: const EdgeInsets.all(12),
               textStyle: StyleTheme.textBoldTs
@@ -106,7 +107,8 @@ class DetailPostPage extends StatelessWidget {
                             textStyle: const TextStyle(fontSize: 16),
                           ),
                           radioButtonValue: (value) {
-                            controller.printDebugMode(value);
+                            controller.postType =
+                                value.toString().toUpperCase();
                           },
                           selectedColor: ColorTheme.primaryColor,
                           defaultSelected: controller.postType,
