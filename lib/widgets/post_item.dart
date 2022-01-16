@@ -67,11 +67,17 @@ class PostItem extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
-                          postData?.title ?? '',
-                          style: StyleTheme.textBoldTs.copyWith(
-                              color: ColorTheme.primaryColor, fontSize: 16),
-                          overflow: TextOverflow.ellipsis,
+                        SizedBox(
+                          width: 180,
+                          child: SingleChildScrollView(
+                            child: Text(
+                              postData?.title ?? '',
+                              style: StyleTheme.textBoldTs.copyWith(
+                                  color: ColorTheme.primaryColor, fontSize: 16),
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                            scrollDirection: Axis.horizontal,
+                          ),
                         ),
                         Text(
                           '\$ ${postData?.price.toString() ?? '0'}',

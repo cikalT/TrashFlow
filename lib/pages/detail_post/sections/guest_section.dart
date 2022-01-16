@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:get/get.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:trashflow/base/base_controller.dart';
 import 'package:trashflow/routes/index.dart';
 import 'package:trashflow/themes/index.dart';
@@ -26,7 +27,6 @@ class GuestSection extends StatelessWidget {
           ),
           CustomContainer(
               padding: const EdgeInsets.all(16),
-              height: 260,
               backgroundColor: ColorTheme.primaryColor,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
@@ -69,7 +69,7 @@ class GuestSection extends StatelessWidget {
                     padding: const EdgeInsets.all(4),
                     decoration: BoxDecoration(
                       border: Border.all(color: ColorTheme.whiteColor),
-                      borderRadius: BorderRadius.circular(16),
+                      borderRadius: BorderRadius.circular(8),
                     ),
                     child: Text(
                       controller.postData?.categories?.first?.name ?? '',
@@ -92,6 +92,61 @@ class GuestSection extends StatelessWidget {
                     controller.postData?.description ?? '',
                     style: StyleTheme.textTs
                         .copyWith(color: ColorTheme.whiteColor, fontSize: 16),
+                  ),
+                  const SizedBox(
+                    height: 16,
+                  ),
+                  Text(
+                    'Post Owner',
+                    style: StyleTheme.textBoldTs
+                        .copyWith(color: ColorTheme.whiteColor, fontSize: 16),
+                  ),
+                  const SizedBox(
+                    height: 8,
+                  ),
+                  Text(
+                    controller.postData?.author?.name ?? '',
+                    style: StyleTheme.textTs
+                        .copyWith(color: ColorTheme.whiteColor, fontSize: 16),
+                  ),
+                  const SizedBox(
+                    height: 16,
+                  ),
+                  Text(
+                    'Location',
+                    style: StyleTheme.textBoldTs
+                        .copyWith(color: ColorTheme.whiteColor, fontSize: 16),
+                  ),
+                  const SizedBox(
+                    height: 8,
+                  ),
+                  Container(
+                    padding: const EdgeInsets.all(4),
+                    decoration: BoxDecoration(
+                      border: Border.all(color: ColorTheme.whiteColor),
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    child: Text(
+                      controller.district,
+                      style: StyleTheme.textTs
+                          .copyWith(color: ColorTheme.whiteColor, fontSize: 16),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 16,
+                  ),
+                  SizedBox(
+                    height: 200,
+                    child: GoogleMap(
+                      myLocationEnabled: true,
+                      initialCameraPosition: CameraPosition(
+                        target: LatLng(
+                            controller.postData?.author?.latitude ?? 0,
+                            controller.postData?.author?.longitude ?? 0),
+                        zoom: 12.99,
+                      ),
+                      markers: <Marker>{controller.setMapMarker()},
+                    ),
                   ),
                 ],
               )),

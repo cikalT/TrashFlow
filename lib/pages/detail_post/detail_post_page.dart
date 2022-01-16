@@ -43,11 +43,10 @@ class DetailPostPage extends StatelessWidget {
           ),
         ),
         child: SingleChildScrollView(
-          physics: NeverScrollableScrollPhysics(),
           child: Column(
             children: [
               Padding(
-                padding: const EdgeInsets.all(16),
+                padding: const EdgeInsets.symmetric(horizontal: 16),
                 child: AppBar(
                   elevation: 0,
                   centerTitle: true,
@@ -78,9 +77,6 @@ class DetailPostPage extends StatelessWidget {
                       )
                   ],
                 ),
-              ),
-              const SizedBox(
-                height: 16,
               ),
               if (!controller.isLoading)
                 SingleChildScrollView(

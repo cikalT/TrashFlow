@@ -3,10 +3,14 @@
 
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
-   <application
+    <application
         android:label="TrashFlow"
         android:icon="@mipmap/launcher_icon">
+       <meta-data android:name="com.google.android.geo.API_KEY"
+           android:value="AIzaSyCX9Xyg3_Ei-Xnp4BwCMFdxitOw5KnbfIc"/>
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"

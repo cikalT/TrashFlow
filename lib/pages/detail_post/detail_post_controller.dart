@@ -1,4 +1,7 @@
+import 'dart:async';
+
 import 'package:get/get.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:trashflow/apis/post/delete_post_api.dart';
 import 'package:trashflow/apis/post/get_category_list_api.dart';
 import 'package:trashflow/apis/post/update_post_api.dart';
@@ -6,6 +9,7 @@ import 'package:trashflow/base/base_controller.dart';
 import 'package:trashflow/helpers/alert_helper.dart';
 import 'package:trashflow/models/index.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:geocoding/geocoding.dart' as Geocoding;
 
 class DetailPostController extends BaseController {
   bool isButtonLoading = false;
@@ -22,6 +26,10 @@ class DetailPostController extends BaseController {
   bool isAuthor = false;
   String titlePage = '';
   String buttonPage = '...';
+
+  Completer<GoogleMapController> mapController = Completer();
+  List<Geocoding.Placemark>? placemarks;
+  String district = '';
 
   @override
   void onInit() async {
@@ -45,6 +53,11 @@ class DetailPostController extends BaseController {
     }
     await getPostCategory();
     setPostData();
+    placemarks = await Geocoding.placemarkFromCoordinates(
+        postData?.author?.latitude ?? 0, postData?.author?.longitude ?? 0,
+        localeIdentifier: "id_ID");
+    district =
+        '${placemarks!.first.subAdministrativeArea}, ${placemarks!.first.administrativeArea}';
     isLoading = false;
     update();
     super.onReady();
@@ -149,5 +162,14 @@ class DetailPostController extends BaseController {
           'Hello, I am interesting to $status you some *${postData?.categories?.first?.name}* that you post on TrashFlow. Can I know where we can meet up? Thank you!';
     }
     await launch('https://wa.me/$number?text=$message');
+  }
+
+  Marker setMapMarker() {
+    return Marker(
+      markerId: const MarkerId('Location Marker'),
+      position: LatLng(
+          postData?.author?.latitude ?? 0, postData?.author?.longitude ?? 0),
+      icon: BitmapDescriptor.defaultMarker,
+    );
   }
 }
