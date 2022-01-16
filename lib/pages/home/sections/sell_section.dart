@@ -1,6 +1,8 @@
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:trashflow/base/base_controller.dart';
 import 'package:trashflow/themes/index.dart';
+import 'package:trashflow/widgets/custom_text_field.dart';
 import 'package:trashflow/widgets/post_item.dart';
 
 import '../home_controller.dart';
@@ -47,6 +49,24 @@ class SellSection extends StatelessWidget {
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
                   children: [
+                    CustomTextField(
+                      controller: controller.fieldSearch,
+                      hintText: 'Search',
+                      prefixIcon: Icon(
+                        CupertinoIcons.search,
+                        color: ColorTheme.primaryColor,
+                      ),
+                      filledColor: ColorTheme.boxColor,
+                      labelColor: ColorTheme.primaryColor,
+                      filledTextColor: ColorTheme.primaryColor,
+                      borderedMode: false,
+                      transparencyMode: true,
+                      maxLines: 1,
+                      keyboardType: TextInputType.text,
+                      onChanged: (value) {
+                        controller.filterPost(value, controller.currentIndex);
+                      },
+                    ),
                     Column(
                       children: List.generate(
                         controller.peopleBuyPostDataList.length,

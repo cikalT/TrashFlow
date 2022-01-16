@@ -131,6 +131,19 @@ class CreatePostPage extends StatelessWidget {
                       const SizedBox(
                         height: 16,
                       ),
+                      Text(
+                        controller.isLoading
+                            ? '...'
+                            : controller.postType.toUpperCase() == 'SELL'
+                                ? 'Please provide a detailed description about the product. You must inform how much you have and how much you want to sell.'
+                                : 'Please provide a detailed description about the product you want. You must inform how much you want to buy.',
+                        style: StyleTheme.textTs
+                            .copyWith(color: ColorTheme.primaryColor),
+                        textAlign: TextAlign.justify,
+                      ),
+                      const SizedBox(
+                        height: 12,
+                      ),
                       CustomTextField(
                         controller: controller.fieldPostDescription,
                         hintText: 'Description',

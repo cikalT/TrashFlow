@@ -54,17 +54,29 @@ class AddPostSection extends StatelessWidget {
                     ),
                     Expanded(
                       child: SizedBox(
-                        height: 80,
-                        child: CustomRaisedButton(
-                          radius: 16,
-                          padding: const EdgeInsets.all(12),
-                          textStyle: StyleTheme.textBoldTs.copyWith(
-                              color: ColorTheme.whiteColor, fontSize: 16),
-                          label: 'Look for Trash',
-                          color: ColorTheme.primaryColor,
-                          onPressed: () {
-                            controller.tapCreatePost('buy');
-                          },
+                        child: Column(
+                          children: [
+                            Text(
+                              'Looking for trash to buy? Post what you are looking for here',
+                              style: StyleTheme.textBoldTs.copyWith(
+                                  color: ColorTheme.primaryColor, fontSize: 16),
+                              textAlign: TextAlign.center,
+                            ),
+                            const SizedBox(
+                              height: 16,
+                            ),
+                            CustomRaisedButton(
+                              radius: 16,
+                              padding: const EdgeInsets.all(12),
+                              textStyle: StyleTheme.textBoldTs.copyWith(
+                                  color: ColorTheme.whiteColor, fontSize: 16),
+                              label: 'Look for Trash',
+                              color: ColorTheme.primaryColor,
+                              onPressed: () {
+                                controller.tapCreatePost('buy');
+                              },
+                            ),
+                          ],
                         ),
                       ),
                     ),
@@ -73,17 +85,29 @@ class AddPostSection extends StatelessWidget {
                     ),
                     Expanded(
                       child: SizedBox(
-                        height: 80,
-                        child: CustomRaisedButton(
-                          radius: 16,
-                          padding: const EdgeInsets.all(12),
-                          textStyle: StyleTheme.textBoldTs.copyWith(
-                              color: ColorTheme.whiteColor, fontSize: 16),
-                          label: 'Sell some Trash',
-                          color: ColorTheme.primaryColor,
-                          onPressed: () {
-                            controller.tapCreatePost('sell');
-                          },
+                        child: Column(
+                          children: [
+                            Text(
+                              'Want to sell your trash? Post your trash here',
+                              style: StyleTheme.textBoldTs.copyWith(
+                                  color: ColorTheme.primaryColor, fontSize: 16),
+                              textAlign: TextAlign.center,
+                            ),
+                            const SizedBox(
+                              height: 16,
+                            ),
+                            CustomRaisedButton(
+                              radius: 16,
+                              padding: const EdgeInsets.all(12),
+                              textStyle: StyleTheme.textBoldTs.copyWith(
+                                  color: ColorTheme.whiteColor, fontSize: 16),
+                              label: 'Sell some Trash',
+                              color: ColorTheme.primaryColor,
+                              onPressed: () {
+                                controller.tapCreatePost('sell');
+                              },
+                            ),
+                          ],
                         ),
                       ),
                     ),

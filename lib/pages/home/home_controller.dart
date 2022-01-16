@@ -43,6 +43,9 @@ class HomeController extends BaseController {
   //buy
   List<PostData?> peopleSellPostDataList = [];
 
+  //filter
+  TextEditingController fieldSearch = TextEditingController();
+
   @override
   void onInit() async {
     super.onInit();
@@ -104,6 +107,7 @@ class HomeController extends BaseController {
   tapMenu(int index) {
     currentIndex = index;
     isLoading = true;
+    fieldSearch.clear();
     loadMenuData(index);
     update();
   }
@@ -164,8 +168,75 @@ class HomeController extends BaseController {
           .show(Get.context!);
     }
     if (result == 'error') {
-      AlertHelper.showAlertTrigger('Something went wrong, try again');
+      AlertHelper.showAlertError('Something went wrong, try again');
     }
+  }
+
+  filterPost(String value, int index) {
+    if (index == 0) {
+      if (value.isNotEmpty) {
+        myPostDataList = filterData(postDataList, value, index);
+        update();
+      } else {
+        myPostDataList = postDataList
+            .where((element) => element?.author?.email == profileGoogle?.email)
+            .toList();
+        myPostDataList.sort((b, a) => a!.createdAt!.compareTo(b!.createdAt!));
+        update();
+      }
+    }
+    if (index == 1) {
+      if (value.isNotEmpty) {
+        peopleBuyPostDataList = filterData(postDataList, value, index);
+        update();
+      } else {
+        peopleBuyPostDataList = postDataList
+            .where((element) =>
+                element?.type == 'BUY' &&
+                element?.author?.email != profileGoogle?.email)
+            .toList();
+        peopleBuyPostDataList
+            .sort((b, a) => a!.createdAt!.compareTo(b!.createdAt!));
+        update();
+      }
+    }
+    if (index == 3) {
+      if (value.isNotEmpty) {
+        peopleSellPostDataList = filterData(postDataList, value, index);
+        update();
+      } else {
+        peopleSellPostDataList = postDataList
+            .where((element) =>
+                element?.type == 'SELL' &&
+                element?.author?.email != profileGoogle?.email)
+            .toList();
+        peopleSellPostDataList
+            .sort((b, a) => a!.createdAt!.compareTo(b!.createdAt!));
+        update();
+      }
+    }
+  }
+
+  List<PostData?> filterData(
+      List<PostData?> listData, String query, int index) {
+    List<PostData?> listPost = [];
+    listPost = listData
+        .where((element) => element?.author?.email == profileGoogle?.email)
+        .toList();
+    listPost = listPost
+        .where((element) => element!.title
+            .toString()
+            .toLowerCase()
+            .contains(query.toLowerCase()))
+        .toList();
+    listPost.sort((b, a) => a!.createdAt!.compareTo(b!.createdAt!));
+    if (index != 0) {
+      listPost = listPost
+          .where((element) => element?.author?.email != profileGoogle?.email)
+          .toList();
+    }
+    update();
+    return listPost;
   }
   //end main call function
 
@@ -179,7 +250,7 @@ class HomeController extends BaseController {
           .where((element) => element?.author?.email == profileGoogle?.email)
           .toList();
       myPostDataList.sort((b, a) => a!.createdAt!.compareTo(b!.createdAt!));
-    }else {
+    } else {
       AlertHelper.showAlertError(result.message.toString(),
           title: 'Error', alertType: AlertType.dialog);
     }
@@ -211,6 +282,8 @@ class HomeController extends BaseController {
     var result = await Get.toNamed(AppRoutes.createPostPage,
         arguments: ScreenArguments()..title = type);
     if (result == 'ok') {
+      currentIndex = 0;
+      update();
       MotionToast.success(
               title: 'Item Posted',
               titleStyle: StyleTheme.headerTs.copyWith(),
@@ -218,6 +291,9 @@ class HomeController extends BaseController {
               descriptionStyle: StyleTheme.textTs.copyWith(),
               width: 300)
           .show(Get.context!);
+      isLoading = true;
+      update();
+      loadMenuData(currentIndex);
     }
   }
   //end add post section function

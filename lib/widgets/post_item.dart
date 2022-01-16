@@ -71,6 +71,7 @@ class PostItem extends StatelessWidget {
                           postData?.title ?? '',
                           style: StyleTheme.textBoldTs.copyWith(
                               color: ColorTheme.primaryColor, fontSize: 16),
+                          overflow: TextOverflow.ellipsis,
                         ),
                         Text(
                           '\$ ${postData?.price.toString() ?? '0'}',

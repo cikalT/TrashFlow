@@ -2,6 +2,7 @@ import 'dart:io';
 import 'dart:typed_data';
 
 import 'package:get/get.dart';
+import 'package:motion_toast/motion_toast.dart';
 import 'package:trashflow/apis/post/create_post_api.dart';
 import 'package:trashflow/apis/post/get_category_list_api.dart';
 import 'package:trashflow/base/base_controller.dart';
@@ -120,29 +121,46 @@ class CreatePostController extends BaseController {
       isSelectImage = true;
       byteImage = await xImage?.readAsBytes();
       image = img.decodeImage(byteImage!);
+    } else {
       isLoading = false;
       update();
+      MotionToast.warning(
+              title: 'Cancel',
+              titleStyle: StyleTheme.headerTs.copyWith(),
+              description: 'You have to pick image to post',
+              descriptionStyle: StyleTheme.textTs.copyWith(),
+              width: 320)
+          .show(Get.context!);
     }
   }
 
   tapCreatePost() async {
     isLoading = true;
     update();
-    var result = await CreatePostApi().request(
-        title: fieldPostTitle.text,
-        description: fieldPostDescription.text,
-        price: int.parse(fieldPostPrice.text),
-        type: 'SELL',
-        categories: categoryId,
-        image: File(xImage!.path));
-    if (result.success ?? false) {
-      Get.back(result: 'ok');
-      isLoading = false;
-      update();
+    if (fieldPostTitle.text.isNotEmpty &&
+        fieldPostDescription.text.isNotEmpty &&
+        fieldPostPrice.text.isNotEmpty) {
+      var result = await CreatePostApi().request(
+          title: fieldPostTitle.text,
+          description: fieldPostDescription.text,
+          price: int.parse(fieldPostPrice.text),
+          type: 'SELL',
+          categories: categoryId,
+          image: File(xImage!.path));
+      if (result.success ?? false) {
+        Get.back(result: 'ok');
+        isLoading = false;
+        update();
+      } else {
+        isLoading = false;
+        update();
+        AlertHelper.showAlertError(result.message.toString(),
+            title: 'Error', alertType: AlertType.dialog);
+      }
     } else {
       isLoading = false;
       update();
-      AlertHelper.showAlertError(result.message.toString(),
+      AlertHelper.showAlertError('Some field need to be filled!',
           title: 'Error', alertType: AlertType.dialog);
     }
   }
