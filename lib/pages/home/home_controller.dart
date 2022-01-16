@@ -175,7 +175,7 @@ class HomeController extends BaseController {
   filterPost(String value, int index) {
     if (index == 0) {
       if (value.isNotEmpty) {
-        myPostDataList = filterData(postDataList, value, index);
+        myPostDataList = filterData(postDataList, value, index, 'MY');
         update();
       } else {
         myPostDataList = postDataList
@@ -187,7 +187,7 @@ class HomeController extends BaseController {
     }
     if (index == 1) {
       if (value.isNotEmpty) {
-        peopleBuyPostDataList = filterData(postDataList, value, index);
+        peopleBuyPostDataList = filterData(postDataList, value, index, 'BUY');
         update();
       } else {
         peopleBuyPostDataList = postDataList
@@ -202,7 +202,7 @@ class HomeController extends BaseController {
     }
     if (index == 3) {
       if (value.isNotEmpty) {
-        peopleSellPostDataList = filterData(postDataList, value, index);
+        peopleSellPostDataList = filterData(postDataList, value, index, 'SELL');
         update();
       } else {
         peopleSellPostDataList = postDataList
@@ -218,23 +218,30 @@ class HomeController extends BaseController {
   }
 
   List<PostData?> filterData(
-      List<PostData?> listData, String query, int index) {
+      List<PostData?> listData, String query, int index, String type) {
     List<PostData?> listPost = [];
-    listPost = listData
-        .where((element) => element?.author?.email == profileGoogle?.email)
-        .toList();
-    listPost = listPost
-        .where((element) => element!.title
-            .toString()
-            .toLowerCase()
-            .contains(query.toLowerCase()))
-        .toList();
-    listPost.sort((b, a) => a!.createdAt!.compareTo(b!.createdAt!));
-    if (index != 0) {
+    listPost = listData.toList();
+    if (index == 0) {
       listPost = listPost
-          .where((element) => element?.author?.email != profileGoogle?.email)
+          .where((element) => element?.author?.email == profileGoogle?.email)
+          .toList();
+      listPost = listPost
+          .where((element) => element!.title
+              .toString()
+              .toLowerCase()
+              .contains(query.toLowerCase()))
+          .toList();
+    } else {
+      listPost = listPost
+          .where((element) =>
+              element!.type == type &&
+              element.title
+                  .toString()
+                  .toLowerCase()
+                  .contains(query.toLowerCase()))
           .toList();
     }
+    listPost.sort((b, a) => a!.createdAt!.compareTo(b!.createdAt!));
     update();
     return listPost;
   }
