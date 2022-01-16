@@ -67,20 +67,45 @@ class SellSection extends StatelessWidget {
                         controller.filterPost(value, controller.currentIndex);
                       },
                     ),
-                    Column(
-                      children: List.generate(
-                        controller.peopleBuyPostDataList.length,
-                        (index) => PostItem(
-                          postData: controller.peopleBuyPostDataList[index],
-                          index: index,
-                          onTap: () => controller.tapPost(
-                              controller.peopleBuyPostDataList[index],
-                              index,
-                              false),
-                          isAuthor: false,
+                    if (controller.peopleBuyPostDataList.isEmpty)
+                      Container(
+                        alignment: Alignment.center,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            const SizedBox(
+                              height: 120,
+                            ),
+                            Image.asset(
+                              'assets/images/no_data.png',
+                              width: 140,
+                            ),
+                            const SizedBox(
+                              height: 16,
+                            ),
+                            Text(
+                              'No Post',
+                              style: StyleTheme.textTs.copyWith(
+                                  color: ColorTheme.primaryColor, fontSize: 16),
+                            ),
+                          ],
                         ),
                       ),
-                    ),
+                    if (controller.peopleBuyPostDataList.isNotEmpty)
+                      Column(
+                        children: List.generate(
+                          controller.peopleBuyPostDataList.length,
+                          (index) => PostItem(
+                            postData: controller.peopleBuyPostDataList[index],
+                            index: index,
+                            onTap: () => controller.tapPost(
+                                controller.peopleBuyPostDataList[index],
+                                index,
+                                false),
+                            isAuthor: false,
+                          ),
+                        ),
+                      ),
                     const SizedBox(
                       height: 32,
                     ),

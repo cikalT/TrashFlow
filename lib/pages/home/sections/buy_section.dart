@@ -67,20 +67,45 @@ class BuySection extends StatelessWidget {
                         controller.filterPost(value, controller.currentIndex);
                       },
                     ),
-                    Column(
-                      children: List.generate(
-                        controller.peopleSellPostDataList.length,
-                        (index) => PostItem(
-                          postData: controller.peopleSellPostDataList[index],
-                          index: index,
-                          onTap: () => controller.tapPost(
-                              controller.peopleSellPostDataList[index],
-                              index,
-                              false),
-                          isAuthor: false,
+                    if (controller.peopleSellPostDataList.isEmpty)
+                      Container(
+                        alignment: Alignment.center,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            const SizedBox(
+                              height: 120,
+                            ),
+                            Image.asset(
+                              'assets/images/no_data.png',
+                              width: 140,
+                            ),
+                            const SizedBox(
+                              height: 16,
+                            ),
+                            Text(
+                              'No Post',
+                              style: StyleTheme.textTs.copyWith(
+                                  color: ColorTheme.primaryColor, fontSize: 16),
+                            ),
+                          ],
                         ),
                       ),
-                    ),
+                    if (controller.peopleSellPostDataList.isNotEmpty)
+                      Column(
+                        children: List.generate(
+                          controller.peopleSellPostDataList.length,
+                          (index) => PostItem(
+                            postData: controller.peopleSellPostDataList[index],
+                            index: index,
+                            onTap: () => controller.tapPost(
+                                controller.peopleSellPostDataList[index],
+                                index,
+                                false),
+                            isAuthor: false,
+                          ),
+                        ),
+                      ),
                     const SizedBox(
                       height: 32,
                     ),

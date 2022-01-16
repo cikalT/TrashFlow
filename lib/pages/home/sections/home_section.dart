@@ -67,18 +67,43 @@ class HomeSection extends StatelessWidget {
                         controller.filterPost(value, controller.currentIndex);
                       },
                     ),
-                    Column(
-                      children: List.generate(
-                        controller.myPostDataList.length,
-                        (index) => PostItem(
-                          postData: controller.myPostDataList[index],
-                          index: index,
-                          onTap: () => controller.tapPost(
-                              controller.myPostDataList[index], index, true),
-                          isAuthor: true,
+                    if (controller.myPostDataList.isEmpty)
+                      Container(
+                        alignment: Alignment.center,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            const SizedBox(
+                              height: 120,
+                            ),
+                            Image.asset(
+                              'assets/images/no_data.png',
+                              width: 140,
+                            ),
+                            const SizedBox(
+                              height: 16,
+                            ),
+                            Text(
+                              'No Post',
+                              style: StyleTheme.textTs.copyWith(
+                                  color: ColorTheme.primaryColor, fontSize: 16),
+                            ),
+                          ],
                         ),
                       ),
-                    ),
+                    if (controller.myPostDataList.isNotEmpty)
+                      Column(
+                        children: List.generate(
+                          controller.myPostDataList.length,
+                          (index) => PostItem(
+                            postData: controller.myPostDataList[index],
+                            index: index,
+                            onTap: () => controller.tapPost(
+                                controller.myPostDataList[index], index, true),
+                            isAuthor: true,
+                          ),
+                        ),
+                      ),
                     const SizedBox(
                       height: 32,
                     ),

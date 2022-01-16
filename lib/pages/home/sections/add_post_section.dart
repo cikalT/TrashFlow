@@ -48,6 +48,7 @@ class AddPostSection extends StatelessWidget {
               child: SingleChildScrollView(
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const SizedBox(
                       width: 8,
@@ -55,6 +56,8 @@ class AddPostSection extends StatelessWidget {
                     Expanded(
                       child: SizedBox(
                         child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             Text(
                               'Looking for trash to buy? Post what you are looking for here',
@@ -86,6 +89,8 @@ class AddPostSection extends StatelessWidget {
                     Expanded(
                       child: SizedBox(
                         child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             Text(
                               'Want to sell your trash? Post your trash here',

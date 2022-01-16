@@ -121,6 +121,8 @@ class CreatePostController extends BaseController {
       isSelectImage = true;
       byteImage = await xImage?.readAsBytes();
       image = img.decodeImage(byteImage!);
+      isLoading = false;
+      update();
     } else {
       isLoading = false;
       update();
