@@ -108,17 +108,20 @@ class EditProfileController extends BaseController {
         } else {
           isLoading = false;
           update();
-          AlertHelper.showAlertTrigger('Failed to update profile');
+          AlertHelper.showAlertError(result.message.toString(),
+              title: 'Error', alertType: AlertType.dialog);
         }
       } else {
         isLoading = false;
         update();
-        AlertHelper.showAlertTrigger('Some field need to be filled!');
+        AlertHelper.showAlertError('Some field need to be filled!',
+            title: 'Error', alertType: AlertType.dialog);
       }
     } else {
       isLoading = false;
       update();
-      AlertHelper.showAlertTrigger('Select your country first!');
+      AlertHelper.showAlertError('Select your country first!',
+          title: 'Error', alertType: AlertType.dialog);
     }
   }
 

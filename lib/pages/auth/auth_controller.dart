@@ -50,6 +50,7 @@ class AuthController extends BaseController {
       UserCredential result = await auth.signInWithCredential(authCredential);
       googleAuthUser = result.user;
       upsertProfile(googleAuthUser);
+      printDebugMode(result.credential?.token);
     }
   }
 
@@ -64,8 +65,8 @@ class AuthController extends BaseController {
       update();
       setUserLogin(googleAuthUser);
     } else {
-      await profileLogOut();
-      AlertHelper.showAlertTrigger('Failed to login');
+      AlertHelper.showAlertError(result.message.toString(),
+          title: 'Error', alertType: AlertType.dialog);
     }
   }
 
@@ -80,10 +81,10 @@ class AuthController extends BaseController {
         arguments: ScreenArguments()..state = true);
   }
 
-  profileLogOut() async {
-    bool isDestroy = await SharedPrefConfig.removeSession();
-    if (isDestroy) {
-      googleSignIn.disconnect();
-    }
-  }
+  // profileLogOut() async {
+  //   bool isDestroy = await SharedPrefConfig.removeSession();
+  //   if (isDestroy) {
+  //     googleSignIn.disconnect();
+  //   }
+  // }
 }

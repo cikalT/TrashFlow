@@ -179,6 +179,9 @@ class HomeController extends BaseController {
           .where((element) => element?.author?.email == profileGoogle?.email)
           .toList();
       myPostDataList.sort((b, a) => a!.createdAt!.compareTo(b!.createdAt!));
+    }else {
+      AlertHelper.showAlertError(result.message.toString(),
+          title: 'Error', alertType: AlertType.dialog);
     }
   }
   //end home section function
@@ -196,6 +199,9 @@ class HomeController extends BaseController {
           .toList();
       peopleBuyPostDataList
           .sort((b, a) => a!.createdAt!.compareTo(b!.createdAt!));
+    } else {
+      AlertHelper.showAlertError(result.message.toString(),
+          title: 'Error', alertType: AlertType.dialog);
     }
   }
   //end sell section function
@@ -229,6 +235,9 @@ class HomeController extends BaseController {
           .toList();
       peopleSellPostDataList
           .sort((b, a) => a!.createdAt!.compareTo(b!.createdAt!));
+    } else {
+      AlertHelper.showAlertError(result.message.toString(),
+          title: 'Error', alertType: AlertType.dialog);
     }
   }
   //end buy section function

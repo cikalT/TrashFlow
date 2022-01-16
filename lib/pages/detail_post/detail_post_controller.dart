@@ -103,13 +103,17 @@ class DetailPostController extends BaseController {
         type: postType.toUpperCase(),
         categories: categoryId);
     if (result.success ?? false) {
+      isButtonLoading = false;
+      isLoading = false;
+      update();
       Get.back(result: 'update');
     } else {
-      AlertHelper.showAlertTrigger('Failed to Update Item');
+      isButtonLoading = false;
+      isLoading = false;
+      update();
+      AlertHelper.showAlertError(result.message.toString(),
+          title: 'Error', alertType: AlertType.dialog);
     }
-    isButtonLoading = false;
-    isLoading = false;
-    update();
   }
 
   tapDeletePost() async {
@@ -118,13 +122,17 @@ class DetailPostController extends BaseController {
     update();
     var result = await DeletePostApi().request(postId: postData?.id ?? '');
     if (result.success ?? false) {
+      isButtonLoading = false;
+      isLoading = false;
+      update();
       Get.back(result: 'delete');
     } else {
-      AlertHelper.showAlertTrigger('Failed to Delete Item');
+      isButtonLoading = false;
+      isLoading = false;
+      update();
+      AlertHelper.showAlertError(result.message.toString(),
+          title: 'Error', alertType: AlertType.dialog);
     }
-    isButtonLoading = false;
-    isLoading = false;
-    update();
   }
 
   tapMessageOwner() async {

@@ -139,6 +139,11 @@ class CreatePostController extends BaseController {
       Get.back(result: 'ok');
       isLoading = false;
       update();
+    } else {
+      isLoading = false;
+      update();
+      AlertHelper.showAlertError(result.message.toString(),
+          title: 'Error', alertType: AlertType.dialog);
     }
   }
 }
