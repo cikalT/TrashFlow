@@ -11,7 +11,11 @@ class InsertProfileApi extends Api {
     required String email,
     required String imageUrl,
   }) async {
-    payload = {"name": name, "email": email, "image": imageUrl};
+    payload = {
+      "name": name,
+      "email": email,
+      "image_url": imageUrl,
+    };
     printDebugMode(payload);
     try {
       await generateHeader();

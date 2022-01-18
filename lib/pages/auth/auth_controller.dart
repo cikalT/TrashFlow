@@ -10,7 +10,7 @@ import 'package:trashflow/routes/app_pages.dart';
 
 class AuthController extends BaseController {
   User? googleAuthUser;
-  GoogleSignIn googleSignIn = GoogleSignIn();
+  GoogleSignInAccount? googleSignInAccount;
   final FirebaseAuth auth = FirebaseAuth.instance;
 
   ProfileData? profileData;
@@ -37,54 +37,45 @@ class AuthController extends BaseController {
 
   tapContinueGoogle() async {
     final GoogleSignIn googleSignIn = GoogleSignIn();
-    final GoogleSignInAccount? googleSignInAccount =
-        await googleSignIn.signIn();
+    googleSignInAccount = await googleSignIn.signIn();
+    printDebugMode('google name: ${googleSignInAccount?.displayName}');
+    printDebugMode('google photo: ${googleSignInAccount?.photoUrl}');
+    printDebugMode('google email: ${googleSignInAccount?.email}');
     if (googleSignInAccount != null) {
-      isLoading = true;
-      update();
-      final GoogleSignInAuthentication googleSignInAuthentication =
-          await googleSignInAccount.authentication;
-      final AuthCredential authCredential = GoogleAuthProvider.credential(
-          idToken: googleSignInAuthentication.idToken,
-          accessToken: googleSignInAuthentication.accessToken);
-      UserCredential result = await auth.signInWithCredential(authCredential);
-      googleAuthUser = result.user;
-      upsertProfile(googleAuthUser);
-      printDebugMode(result.credential?.token);
+      upsertProfile(googleSignInAccount);
     }
   }
 
-  upsertProfile(User? googleAuthUser) async {
+  upsertProfile(GoogleSignInAccount? googleAuthUser) async {
+    isLoading = true;
+    update();
+    printDebugMode(await InsertProfileApi().payload);
     var result = await InsertProfileApi().request(
-        name: googleAuthUser?.displayName ?? '',
-        email: googleAuthUser?.email ?? '',
-        imageUrl: googleAuthUser?.photoURL ?? '');
+      name: googleAuthUser?.displayName ?? '',
+      email: googleAuthUser?.email ?? '',
+      imageUrl: googleAuthUser?.photoUrl ?? '',
+    );
     if (result.success ?? false) {
       profileData = result.data;
-      isLoading = false;
-      update();
       setUserLogin(googleAuthUser);
     } else {
+      isLoading = false;
+      update();
       AlertHelper.showAlertError(result.message.toString(),
           title: 'Error', alertType: AlertType.dialog);
     }
   }
 
-  setUserLogin(User? googleAuthUser) {
+  setUserLogin(GoogleSignInAccount? googleAuthUser) {
     SharedPrefConfig.setLogin(true);
     ProfileGoogle user = ProfileGoogle();
     user.email = googleAuthUser?.email;
     user.displayName = googleAuthUser?.displayName;
-    user.photoUrl = googleAuthUser?.photoURL;
+    user.photoUrl = googleAuthUser?.photoUrl;
     SharedPrefConfig.setUserData(user);
+    isLoading = false;
+    update();
     Get.offAllNamed(AppRoutes.homePage,
         arguments: ScreenArguments()..state = true);
   }
-
-  // profileLogOut() async {
-  //   bool isDestroy = await SharedPrefConfig.removeSession();
-  //   if (isDestroy) {
-  //     googleSignIn.disconnect();
-  //   }
-  // }
 }

@@ -286,21 +286,31 @@ class HomeController extends BaseController {
 
   //start add post section function
   tapCreatePost(String type) async {
-    var result = await Get.toNamed(AppRoutes.createPostPage,
-        arguments: ScreenArguments()..title = type);
-    if (result == 'ok') {
-      currentIndex = 0;
-      update();
-      MotionToast.success(
-              title: 'Item Posted',
+    if (profileData?.phone != null) {
+      var result = await Get.toNamed(AppRoutes.createPostPage,
+          arguments: ScreenArguments()..title = type);
+      if (result == 'ok') {
+        currentIndex = 0;
+        update();
+        MotionToast.success(
+                title: 'Item Posted',
+                titleStyle: StyleTheme.headerTs.copyWith(),
+                description: 'Success create post',
+                descriptionStyle: StyleTheme.textTs.copyWith(),
+                width: 300)
+            .show(Get.context!);
+        isLoading = true;
+        update();
+        loadMenuData(currentIndex);
+      }
+    } else {
+      MotionToast.error(
+              title: 'Profile Not Completed!',
               titleStyle: StyleTheme.headerTs.copyWith(),
-              description: 'Success create post',
+              description: 'Please update your profile first!',
               descriptionStyle: StyleTheme.textTs.copyWith(),
               width: 300)
           .show(Get.context!);
-      isLoading = true;
-      update();
-      loadMenuData(currentIndex);
     }
   }
   //end add post section function
@@ -352,6 +362,7 @@ class HomeController extends BaseController {
   tapProfileLogOut() async {
     bool isDestroy = await SharedPrefConfig.removeSession();
     if (isDestroy) {
+      googleSignIn.signOut();
       googleSignIn.disconnect();
       MotionToast.warning(
               title: 'Log Out',
