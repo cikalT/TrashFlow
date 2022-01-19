@@ -44,14 +44,16 @@ class DetailPostController extends BaseController {
       postData = screenArguments?.data as PostData?;
       isAuthor = screenArguments?.state ?? false;
       if (isAuthor) {
+        await getPostCategory();
         buttonPage = 'Update Post';
         titlePage = 'Update Post';
       } else {
         buttonPage = 'Chat Now';
         titlePage = '';
+        isLoading = false;
+        update();
       }
     }
-    await getPostCategory();
     setPostData();
     placemarks = await Geocoding.placemarkFromCoordinates(
         postData?.author?.latitude ?? 0, postData?.author?.longitude ?? 0,
@@ -81,6 +83,8 @@ class DetailPostController extends BaseController {
     var result = await GetCategoryListApi().request();
     if (result.success ?? false) {
       postCategoryList = result.listData as List<CategoryData?>;
+      isLoading = false;
+      update();
     } else {
       Get.back(result: 'error');
     }
